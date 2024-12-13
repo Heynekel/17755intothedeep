@@ -19,5 +19,20 @@ public class Canasta extends SubsystemBase {
         this.telemetry = telemetry;
         c1 = new SimpleServo(hardwareMap, "c1", 0, 180, AngleUnit.DEGREES);
         c2 = new SimpleServo(hardwareMap, "c2", 0, 180, AngleUnit.DEGREES);
+        c2.setInverted(true);
+    }
+    public void dejar(){
+        //c2.turnToAngle(30);
+        c1.turnToAngle(35);
+    }
+    public void regresar(){
+        c1.turnToAngle(160);
+       // c2.turnToAngle(165);
+    }
+
+    @Override
+    public  void  periodic(){
+telemetry.addData("c1", c1.getAngle(AngleUnit.DEGREES));
+telemetry.addData("c2", c2.getAngle(AngleUnit.DEGREES));
     }
 }

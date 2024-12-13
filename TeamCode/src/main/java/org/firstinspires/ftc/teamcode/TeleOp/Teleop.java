@@ -11,6 +11,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Commands.MecanumDriveCommand;
+import org.firstinspires.ftc.teamcode.Subsystem.Canasta;
 import org.firstinspires.ftc.teamcode.Subsystem.ElevatorSystem;
 import org.firstinspires.ftc.teamcode.Subsystem.Intake;
 import org.firstinspires.ftc.teamcode.Subsystem.MecanumDriveSubsystem;
@@ -27,25 +28,37 @@ public class Teleop extends CommandOpMode {
         GamepadEx gamepadSecond = new GamepadEx(gamepad2);
         Intake intake = new Intake(hardwareMap, telemetry);
         ElevatorSystem elevatorSystem = new ElevatorSystem(hardwareMap, telemetry);
+        Canasta canasta = new Canasta(hardwareMap, telemetry);
 
         new  GamepadButton(gamepadDriver, GamepadKeys.Button.RIGHT_STICK_BUTTON)
                 .whenPressed(()->elevatorSystem.resetarmsystemticks());
 
-        new GamepadButton(gamepadDriver, GamepadKeys.Button.RIGHT_BUMPER)
+        /*new GamepadButton(gamepadDriver, GamepadKeys.Button.RIGHT_BUMPER)
                 .whileHeld(()-> intake.agarrar(-1))
-                        .whenReleased(()->intake.agarrar(0));
+                        .whenReleased(()->intake.agarrar(0));*/
+
 
         new GamepadButton(gamepadDriver, GamepadKeys.Button.LEFT_BUMPER)
                 .whileHeld(()-> intake.agarrar(1))
                 .whenReleased(()->intake.agarrar(0));
 
-        new  GamepadButton(gamepadDriver, GamepadKeys.Button.Y)
+        new GamepadButton(gamepadDriver, GamepadKeys.Button.DPAD_UP)
+                .whileHeld(()-> intake.setPoint(900, -1))
+                .whenReleased(()->intake.setPoint(20, 0));
+
+        new  GamepadButton(gamepadDriver, GamepadKeys.Button.DPAD_UP)
+                .whenPressed(()->canasta.dejar());
+
+        new  GamepadButton(gamepadDriver, GamepadKeys.Button.DPAD_DOWN)
+                .whenPressed(()-> canasta.regresar());
+
+       /* new  GamepadButton(gamepadDriver, GamepadKeys.Button.Y)
                 .whileHeld(()-> elevatorSystem.setPower(1))
                 .whenReleased(()->elevatorSystem.setPower(0));
 
         new GamepadButton(gamepadDriver, GamepadKeys.Button.A)
                 .whileHeld(()-> elevatorSystem.setPower(-1))
-                .whenReleased(()->elevatorSystem.setPower(0));
+                .whenReleased(()->elevatorSystem.setPower(0));*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
         new GamepadButton(gamepadSecond, GamepadKeys.Button.RIGHT_BUMPER)
@@ -69,9 +82,12 @@ public class Teleop extends CommandOpMode {
                 .whenPressed(()->intake.resetintakearmtiks());
 
 
-
         new GamepadButton(gamepadSecond, GamepadKeys.Button.A)
-                .whenPressed(()-> elevatorSystem.setPosition(0));
+                .whenPressed(()-> elevatorSystem.setPosition(10));
+
+        new GamepadButton(gamepadSecond, GamepadKeys.Button.DPAD_UP)
+                .whileHeld(()-> intake.setPoint(900, 1))
+                        .whenReleased(()->intake.setPoint(20, 0));
 
         driveSubsystem.setDefaultCommand(new MecanumDriveCommand(
                 driveSubsystem, () -> -gamepadDriver.getLeftY(), gamepadDriver::getLeftX, gamepadDriver::getRightX

@@ -15,7 +15,7 @@ public class Escalador extends SubsystemBase {
 
     DcMotorEx escalador;
 
-    public  Escalador (HardwareMap hardwareMap, Telemetry telemetry){
+    public Escalador (HardwareMap hardwareMap, Telemetry telemetry){
         this.hardwareMap =  hardwareMap;
         this.telemetry = telemetry;
 
