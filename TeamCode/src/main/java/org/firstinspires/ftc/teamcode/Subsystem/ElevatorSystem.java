@@ -61,10 +61,10 @@ public class ElevatorSystem extends SubsystemBase {
     }
 
     public void setPosition(int pos){
-        brazoizq.setPower(1);
+        brazoizq.setVelocity(6000);
         brazoizq.setTargetPosition(pos);
         brazoizq.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        brazoder.setPower(1);
+        brazoder.setVelocity(6000);
         brazoder.setTargetPosition(pos);
         brazoder.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
