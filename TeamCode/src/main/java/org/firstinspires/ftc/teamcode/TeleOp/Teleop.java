@@ -80,11 +80,13 @@ public class Teleop extends CommandOpMode {
                 .whenReleased(()->intake.SetPower(0));*/
 
 
-        new GamepadButton(gamepadSecond, GamepadKeys.Button.Y)
+        /*new GamepadButton(gamepadSecond, GamepadKeys.Button.Y)
                 .whenPressed(()-> elevatorSystem.setPosition(2150));
 
         new GamepadButton(gamepadSecond, GamepadKeys.Button.B)
                 .whenPressed(()-> elevatorSystem.setPosition(900));
+
+         */
 
         //1250 low basket
 
