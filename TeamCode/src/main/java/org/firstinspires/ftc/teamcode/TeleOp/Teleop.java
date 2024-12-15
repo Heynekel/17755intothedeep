@@ -31,6 +31,7 @@ public class Teleop extends CommandOpMode {
         ElevatorSystem elevatorSystem = new ElevatorSystem(hardwareMap, telemetry);
         Canasta canasta = new Canasta(hardwareMap, telemetry);
 
+        //gay
 
         /*new GamepadButton(gamepadDriver, GamepadKeys.Button.RIGHT_BUMPER)
                 .whileHeld(()-> intake.agarrar(-1))

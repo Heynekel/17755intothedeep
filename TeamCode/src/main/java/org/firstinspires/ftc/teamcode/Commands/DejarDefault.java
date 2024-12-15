@@ -12,6 +12,8 @@ import org.firstinspires.ftc.teamcode.Subsystem.ElevatorSystem;
 import org.firstinspires.ftc.teamcode.Subsystem.Intake;
 
 public class DejarDefault extends CommandBase {
+
+    //gay
     ElevatorSystem elevatorSystem;
     Canasta canasta;
     Intake intake;
