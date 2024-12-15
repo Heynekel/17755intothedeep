@@ -10,6 +10,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.Commands.DejarDefault;
 import org.firstinspires.ftc.teamcode.Commands.MecanumDriveCommand;
 import org.firstinspires.ftc.teamcode.Subsystem.Canasta;
 import org.firstinspires.ftc.teamcode.Subsystem.ElevatorSystem;
@@ -37,7 +38,7 @@ public class Teleop extends CommandOpMode {
 
 
         new GamepadButton(gamepadDriver, GamepadKeys.Button.RIGHT_BUMPER)
-                .whileHeld(()-> intake.setPoint(-550,-1,0.5))
+                .whileHeld(()-> intake.setPoint(-620,-1,0.5))
                 .whenReleased(()->intake.setPoint(0,0,0.3));
 
         /*new GamepadButton(gamepadDriver, GamepadKeys.Button.DPAD_UP)
@@ -93,9 +94,13 @@ public class Teleop extends CommandOpMode {
         new GamepadButton(gamepadDriver, GamepadKeys.Button.START)
                 .whenPressed(()->intake.resetintakearmtiks());
 
+        elevatorSystem.setDefaultCommand(new DejarDefault(elevatorSystem, canasta, intake, gamepadDriver));
 
-        new GamepadButton(gamepadSecond, GamepadKeys.Button.A)
+
+        /*new GamepadButton(gamepadSecond, GamepadKeys.Button.A)
                 .whenPressed(()-> elevatorSystem.setPosition(10));
+
+         */
 
         new  GamepadButton(gamepadSecond, GamepadKeys.Button.RIGHT_STICK_BUTTON)
                 .whenPressed(()->elevatorSystem.resetarmsystemticks());
