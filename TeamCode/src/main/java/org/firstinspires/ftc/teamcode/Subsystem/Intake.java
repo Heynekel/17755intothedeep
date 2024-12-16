@@ -1,11 +1,10 @@
 package org.firstinspires.ftc.teamcode.Subsystem;
 
+import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.SubsystemBase;
-import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -44,14 +43,15 @@ public class Intake extends SubsystemBase {
             intakearm.setPower(armPower);
 
             ser1.setPower(power);
+
         }
 
         public int getPosition(){
             return intakearm.getCurrentPosition();
         }
 
-        public  void SetPower(double power){
-            intakearm.setPower(power);
+        public  void setPower(double power){
+            ser1.setPower(power);
         }
 
         public boolean isAtSetPoint() {
@@ -59,16 +59,16 @@ public class Intake extends SubsystemBase {
             return isAtSetPoint;
         }
 
-        public void servoAtSetpoint(int position, double power, double armPower) {
+        public void AtSetpoint(int position, double armPower) {
             intakearm.setTargetPosition(position);
             intakearm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             intakearm.setPower(armPower);
 
-            if(intakearm.getCurrentPosition() > 20){
+            /*if(intakearm.getCurrentPosition() > 20){
 
                 ser1.setPower(power);
 
-            }
+            }*/
         }
 
 

@@ -1,7 +1,6 @@
+
 package org.firstinspires.ftc.teamcode.TeleOp;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad1;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.RunCommand;
@@ -10,7 +9,8 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.Commands.DejarDefault;
+
+import org.firstinspires.ftc.teamcode.Commands.DejarDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.MecanumDriveCommand;
 import org.firstinspires.ftc.teamcode.Subsystem.Canasta;
 import org.firstinspires.ftc.teamcode.Subsystem.ElevatorSystem;
@@ -39,8 +39,8 @@ public class Teleop extends CommandOpMode {
 
 
         new GamepadButton(gamepadDriver, GamepadKeys.Button.RIGHT_BUMPER)
-                .whileHeld(()-> intake.setPoint(-620,-1,0.5))
-                .whenReleased(()->intake.setPoint(0,0,0.3));
+                .whileHeld(()-> intake.setPoint(-690,-1, 0.5))
+                .whenReleased(()->intake.setPoint(-90,0,0.3));
 
         /*new GamepadButton(gamepadDriver, GamepadKeys.Button.DPAD_UP)
                 .whileHeld(()-> intake.setPoint(900, -1,0.5))
@@ -55,7 +55,7 @@ public class Teleop extends CommandOpMode {
         new GamepadButton(gamepadDriver, GamepadKeys.Button.LEFT_BUMPER)
                 .whileHeld(()-> intake.agarrar(1))
                 .whenReleased(()-> intake.agarrar(0))
-                .whenReleased(()->intake.setPosition(-100));
+                .whenReleased(()->intake.setPosition(-160));
 
         new  GamepadButton(gamepadDriver, GamepadKeys.Button.DPAD_UP)
                 .whileHeld(()-> intake.setPoint(intake.getPosition()-100, 0, .3))
@@ -95,8 +95,12 @@ public class Teleop extends CommandOpMode {
         new GamepadButton(gamepadDriver, GamepadKeys.Button.START)
                 .whenPressed(()->intake.resetintakearmtiks());
 
-        elevatorSystem.setDefaultCommand(new DejarDefault(elevatorSystem, canasta, intake, gamepadDriver));
+        elevatorSystem.setDefaultCommand(new DejarDefaultCommand(elevatorSystem, canasta, intake, gamepadSecond));
 
+        new GamepadButton(gamepadSecond, GamepadKeys.Button.LEFT_BUMPER)
+                .whileHeld(()-> intake.agarrar(1))
+                .whenReleased(()-> intake.agarrar(0))
+                .whenReleased(()->intake.setPosition(-160));
 
         /*new GamepadButton(gamepadSecond, GamepadKeys.Button.A)
                 .whenPressed(()-> elevatorSystem.setPosition(10));
@@ -119,6 +123,6 @@ public class Teleop extends CommandOpMode {
             telemetry.addData("Heading", driveSubsystem.getPoseEstimate().getHeading());
             telemetry.addData("Position", driveSubsystem.getPoseEstimate());
             telemetry.update();
-  }));
+        }));
     }
 }

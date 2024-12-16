@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.Subsystem.ElevatorSystem;
 import org.firstinspires.ftc.teamcode.Subsystem.Intake;
 import org.firstinspires.ftc.teamcode.Subsystem.MecanumDriveSubsystem;
 import org.firstinspires.ftc.teamcode.Trejectories.BlueTrejectories;
-@Autonomous
+
 public class Autosblue extends SequentialCommandGroup {
     BlueTrejectories blueTrejectories = new BlueTrejectories();
 

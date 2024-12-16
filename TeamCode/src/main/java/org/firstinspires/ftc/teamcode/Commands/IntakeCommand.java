@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class IntakeCommand extends CommandBase{
     Intake intake;
     double power;
-    Timing.Timer timer = new Timing.Timer(2, TimeUnit.SECONDS);
+    Timing.Timer timer = new Timing.Timer(5, TimeUnit.SECONDS);
 
     public IntakeCommand(Intake intake, double power) {
         this.power = power;
@@ -25,7 +25,7 @@ public class IntakeCommand extends CommandBase{
     }
     @Override
     public void execute() {
-        intake.SetPower(power);
+        intake.setPower(power);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class IntakeCommand extends CommandBase{
 
     @Override
     public void end(boolean interrupted) {
-        intake.SetPower(0);
+        intake.setPower(0);
         super.end(interrupted);
     }
 
