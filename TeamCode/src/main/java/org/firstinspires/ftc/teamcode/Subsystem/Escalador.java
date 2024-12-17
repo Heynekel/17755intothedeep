@@ -13,7 +13,7 @@ public class Escalador extends SubsystemBase {
 
     Telemetry telemetry;
 
-    DcMotorEx escalador;
+    DcMotorEx escalador, escalador2;
 
     public Escalador (HardwareMap hardwareMap, Telemetry telemetry){
         this.hardwareMap =  hardwareMap;
@@ -21,9 +21,18 @@ public class Escalador extends SubsystemBase {
 
         escalador = hardwareMap.get(DcMotorEx.class, " escalador");
         escalador.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        escalador2 = hardwareMap.get(DcMotorEx.class, " escalador2");
+        escalador2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     public  void setPower(double power){
         escalador.setPower(power);
+        escalador2.setPower(power);
+    }
+
+    @Override
+    public void periodic(){
+        telemetry.addData("escalador", escalador.getCurrentPosition());
+        telemetry.addData("escalador", escalador2.getCurrentPosition());
     }
 }
