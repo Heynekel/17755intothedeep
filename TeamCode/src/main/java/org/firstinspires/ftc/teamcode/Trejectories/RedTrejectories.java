@@ -99,7 +99,7 @@ public class RedTrejectories {
     }
 
     public  Trajectory rojoizq3(SampleMecanumDrive drive){
-        return drive.trajectoryBuilder(new Pose2d(-21, -22.25, Math.toRadians(146.00)))
+        return drive.trajectoryBuilder(new Pose2d(-21, -20.25, Math.toRadians(146.00)))
                 //.lineToLinearHeading(new Pose2d(-58.64, -57.76, Math.toRadians(47.00)))
                 .forward(12.5)
                 .build();

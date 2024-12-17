@@ -39,8 +39,8 @@ public class Teleop extends CommandOpMode {
 
 
         new GamepadButton(gamepadDriver, GamepadKeys.Button.RIGHT_BUMPER)
-                .whileHeld(()-> intake.setPoint(-690,-1, 0.5))
-                .whenReleased(()->intake.setPoint(-90,0,0.3));
+                .whileHeld(()-> intake.setPoint(-580,-1, 0.5))
+                .whenReleased(()->intake.setPoint(-20,0,0.3));
 
         /*new GamepadButton(gamepadDriver, GamepadKeys.Button.DPAD_UP)
                 .whileHeld(()-> intake.setPoint(900, -1,0.5))
@@ -55,7 +55,7 @@ public class Teleop extends CommandOpMode {
         new GamepadButton(gamepadDriver, GamepadKeys.Button.LEFT_BUMPER)
                 .whileHeld(()-> intake.agarrar(1))
                 .whenReleased(()-> intake.agarrar(0))
-                .whenReleased(()->intake.setPosition(-160));
+                .whenReleased(()->intake.setPosition(-150));
 
         new  GamepadButton(gamepadDriver, GamepadKeys.Button.DPAD_UP)
                 .whileHeld(()-> intake.setPoint(intake.getPosition()-100, 0, .3))
@@ -100,7 +100,7 @@ public class Teleop extends CommandOpMode {
         new GamepadButton(gamepadSecond, GamepadKeys.Button.LEFT_BUMPER)
                 .whileHeld(()-> intake.agarrar(1))
                 .whenReleased(()-> intake.agarrar(0))
-                .whenReleased(()->intake.setPosition(-160));
+                .whenReleased(()->intake.setPosition(-150));
 
         /*new GamepadButton(gamepadSecond, GamepadKeys.Button.A)
                 .whenPressed(()-> elevatorSystem.setPosition(10));

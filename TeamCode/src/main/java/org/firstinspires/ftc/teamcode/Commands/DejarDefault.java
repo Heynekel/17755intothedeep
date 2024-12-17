@@ -32,23 +32,28 @@ public class DejarDefault extends CommandBase {
     public void execute() {
 
         if (gamepadEx.getButton(GamepadKeys.Button.Y)) {
-            CommandScheduler.getInstance().schedule(new InstantCommand(()-> intake.setPosition(-300)));
-            CommandScheduler.getInstance().schedule(new WaitCommand(250));
+            CommandScheduler.getInstance().schedule(new InstantCommand(()-> intake.setPosition(-90)));
+            CommandScheduler.getInstance().schedule(new WaitCommand(5000));
             CommandScheduler.getInstance().schedule(new InstantCommand(() -> elevatorSystem.setPosition(2150)));
-            CommandScheduler.getInstance().schedule(new WaitCommand(2000));
-            CommandScheduler.getInstance().schedule(new InstantCommand(() -> canasta.dejar()));
+            CommandScheduler.getInstance().schedule(new WaitCommand(20000));
         }
 
-            if (gamepadEx.getButton(GamepadKeys.Button.B)) {
-                CommandScheduler.getInstance().schedule(new InstantCommand(()-> intake.setPosition(-300)));
+        /*if (elevatorSystem.getArmsystemPosition() >=2100 ){
+            canasta.dejar();
+        }
+
+         */
+
+        if (gamepadEx.getButton(GamepadKeys.Button.B)) {
+                CommandScheduler.getInstance().schedule(new InstantCommand(()-> intake.setPosition(-90)));
                 CommandScheduler.getInstance().schedule(new WaitCommand(250));
                 CommandScheduler.getInstance().schedule(new InstantCommand(() -> elevatorSystem.setPosition(900)));
-                CommandScheduler.getInstance().schedule(new WaitCommand(2000));
+                CommandScheduler.getInstance().schedule(new WaitCommand(20000));
                 CommandScheduler.getInstance().schedule(new InstantCommand(() -> canasta.dejar()));
-            }
+        }
 
-            if (gamepadEx.getButton(GamepadKeys.Button.A)) {
-                CommandScheduler.getInstance().schedule(new InstantCommand(()-> intake.setPosition(-300)));
+        if (gamepadEx.getButton(GamepadKeys.Button.A)) {
+                CommandScheduler.getInstance().schedule(new InstantCommand(()-> intake.setPosition(-90)));
                 CommandScheduler.getInstance().schedule(new WaitCommand(350));
                 CommandScheduler.getInstance().schedule(new InstantCommand(() -> canasta.regresar()));
                 CommandScheduler.getInstance().schedule(new WaitCommand(750));
