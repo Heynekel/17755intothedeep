@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.Subsystem.Escalador;
 
 @TeleOp
 public class TeleopEscalador extends CommandOpMode {
-
+///
     @Override
     public void initialize() {
         Escalador escalador = new Escalador(hardwareMap, telemetry);
