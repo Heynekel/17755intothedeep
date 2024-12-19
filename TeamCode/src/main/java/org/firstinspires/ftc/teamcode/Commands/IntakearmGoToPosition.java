@@ -18,7 +18,7 @@ public class IntakearmGoToPosition extends CommandBase {
 
     @Override
     public void  execute(){
-        intake.setPoint(setPoint, 1, 0.05);
+        intake.setPoint(setPoint, 1, 0.03);
     }
 
     @Override

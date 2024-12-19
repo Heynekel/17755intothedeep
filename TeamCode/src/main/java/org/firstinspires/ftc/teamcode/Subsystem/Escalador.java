@@ -13,7 +13,7 @@ public class Escalador extends SubsystemBase {
 
     Telemetry telemetry;
 
-    DcMotorEx escalador, escalador2;
+    DcMotorEx escalador;
 
     public Escalador (HardwareMap hardwareMap, Telemetry telemetry){
         this.hardwareMap =  hardwareMap;
@@ -21,18 +21,46 @@ public class Escalador extends SubsystemBase {
 
         escalador = hardwareMap.get(DcMotorEx.class, " escalador");
         escalador.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        escalador2 = hardwareMap.get(DcMotorEx.class, " escalador2");
-        escalador2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        escalador.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
     }
 
-    public  void setPower(double power){
+    public  void setPower1( int i){
+        escalador.setVelocity(i);
+    }
+
+    public  void setPower( double power){
+
+escalador.setPower(power);
+    }
+
+    public void setPoint(int position, double power) {
+
+        escalador.setTargetPosition(position);
+        escalador.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         escalador.setPower(power);
-        escalador2.setPower(power);
-    }
 
+    }
+    public boolean isAtSetPoint(){
+        boolean isAtSetPoint = escalador.getCurrentPosition() - escalador.getTargetPosition() < escalador.getTargetPositionTolerance();
+        return isAtSetPoint;
+    }
+public void setPosition(int pos ){
+        escalador.setVelocity(5000);
+        escalador.setTargetPosition(pos);
+        escalador.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+}
+
+    public void setPoint2(int position, double power) {
+        escalador.setTargetPosition(position);
+        escalador.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        escalador.setPower(power);
+
+
+    }
     @Override
     public void periodic(){
         telemetry.addData("escalador", escalador.getCurrentPosition());
-        telemetry.addData("escalador", escalador2.getCurrentPosition());
+
     }
 }

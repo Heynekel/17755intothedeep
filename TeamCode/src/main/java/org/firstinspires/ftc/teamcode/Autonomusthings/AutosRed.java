@@ -1,9 +1,14 @@
 package org.firstinspires.ftc.teamcode.Autonomusthings;
 
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.Commands.ArmGoToPosition;
+import org.firstinspires.ftc.teamcode.Commands.DejarDefault;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCommand;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCommandforAutonomus;
 import org.firstinspires.ftc.teamcode.Commands.TrajectoryFollowerCommand;
@@ -18,16 +23,22 @@ import java.util.function.BooleanSupplier;
 public class AutosRed extends SequentialCommandGroup {
 
     RedTrejectories redTrejectories = new RedTrejectories();
+
     
-    public AutosRed(MecanumDriveSubsystem mecanumDriveSubsystem, Intake intake){
+    public AutosRed(MecanumDriveSubsystem mecanumDriveSubsystem, Intake intake, ElevatorSystem elevatorSystem, Canasta canasta){
         addCommands(
 new TrajectoryFollowerCommand(mecanumDriveSubsystem, redTrejectories.reojoiz1(mecanumDriveSubsystem.getDrive())),
+          new ArmGoToPosition(elevatorSystem, 2150),
+                new WaitCommand(700),
+                new InstantCommand(canasta::dejar),
+                new WaitCommand(1000),
                 new TrajectoryFollowerCommand(mecanumDriveSubsystem, redTrejectories.rojoizq2(mecanumDriveSubsystem.getDrive())),
-                new IntakeCommandforAutonomus(intake, -580),
+                new IntakeCommandforAutonomus(intake, -560),
                 new ParallelCommandGroup(
                         new IntakeCommand(intake, -1),
                         new TrajectoryFollowerCommand(mecanumDriveSubsystem, redTrejectories.rojoizq3(mecanumDriveSubsystem.getDrive()))
-                )
+                ),
+                new TrajectoryFollowerCommand(mecanumDriveSubsystem, redTrejectories.rojoizq4(mecanumDriveSubsystem.getDrive()))
 
 
 
