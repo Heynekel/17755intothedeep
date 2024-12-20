@@ -55,7 +55,7 @@ public void setPosition(int pos ){
         escalador.setTargetPosition(position);
         escalador.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         escalador.setPower(power);
-
+///
 
     }
     @Override
