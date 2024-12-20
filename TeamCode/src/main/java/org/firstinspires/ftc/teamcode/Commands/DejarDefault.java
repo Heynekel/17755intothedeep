@@ -29,26 +29,24 @@ public class DejarDefault extends CommandBase {
             CommandScheduler.getInstance().schedule(new InstantCommand(()-> intake.setPosition(-256)));
             CommandScheduler.getInstance().schedule(new WaitCommand(10000));
             CommandScheduler.getInstance().schedule(new InstantCommand(() -> elevatorSystem.setPosition(2150)));
-
-
         }
         if (elevatorSystem.getArmsystemPosition()>2000 ){
             canasta.dejar();
         }
 
-        if (elevatorSystem.getArmsystemPosition()<1900 ){
+        if (elevatorSystem.getArmsystemPosition()>900 ){
             canasta.regresar();
         }
         if (gamepadEx.getButton(GamepadKeys.Button.B)) {
                 CommandScheduler.getInstance().schedule(new InstantCommand(()-> intake.setPosition(-256)));
                 CommandScheduler.getInstance().schedule(new WaitCommand(350));
-                CommandScheduler.getInstance().schedule(new InstantCommand(() -> elevatorSystem.setPosition(900)));
+                CommandScheduler.getInstance().schedule(new InstantCommand(() -> elevatorSystem.setPosition(950)));
                 CommandScheduler.getInstance().schedule(new WaitCommand(20000));
                 CommandScheduler.getInstance().schedule(new InstantCommand(() -> canasta.dejar()));
         }
         if (gamepadEx.getButton(GamepadKeys.Button.A)) {
+            CommandScheduler.getInstance().schedule(new InstantCommand(() -> canasta.regresar()));
                 CommandScheduler.getInstance().schedule(new InstantCommand(()-> intake.setPosition(-256)));
-                CommandScheduler.getInstance().schedule(new InstantCommand(() -> canasta.regresar()));
                 CommandScheduler.getInstance().schedule(new InstantCommand(() -> elevatorSystem.setPosition(0)));
         }
         }

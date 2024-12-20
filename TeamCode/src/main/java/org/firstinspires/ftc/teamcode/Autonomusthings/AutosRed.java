@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.Commands.ArmGoToPosition;
 import org.firstinspires.ftc.teamcode.Commands.DejarDefault;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCommand;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCommandforAutonomus;
+import org.firstinspires.ftc.teamcode.Commands.IntakearmGoToPosition;
 import org.firstinspires.ftc.teamcode.Commands.TrajectoryFollowerCommand;
 import org.firstinspires.ftc.teamcode.Subsystem.Canasta;
 import org.firstinspires.ftc.teamcode.Subsystem.ElevatorSystem;
@@ -28,9 +29,11 @@ public class AutosRed extends SequentialCommandGroup {
     public AutosRed(MecanumDriveSubsystem mecanumDriveSubsystem, Intake intake, ElevatorSystem elevatorSystem, Canasta canasta){
         addCommands(
 new TrajectoryFollowerCommand(mecanumDriveSubsystem, redTrejectories.reojoiz1(mecanumDriveSubsystem.getDrive())),
+          new IntakearmGoToPosition(intake, -300),
           new ArmGoToPosition(elevatorSystem, 2150),
                 new WaitCommand(700),
-                new InstantCommand(canasta::dejar),
+               // new InstantCommand(canasta::dejar),
+                new ArmGoToPosition(elevatorSystem, 0),
                 new WaitCommand(1000),
                 new TrajectoryFollowerCommand(mecanumDriveSubsystem, redTrejectories.rojoizq2(mecanumDriveSubsystem.getDrive())),
                 new IntakeCommandforAutonomus(intake, -560),

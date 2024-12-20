@@ -44,8 +44,8 @@ public class Teleop extends CommandOpMode {
                 .whenPressed(()->intake.resetintakearmtiks());
 
         new GamepadButton(gamepadDriver, GamepadKeys.Button.RIGHT_BUMPER)
-                .whileHeld(()-> intake.setPoint(-650,-1, 0.5))
-                .whenReleased(()->intake.setPoint(0,0,0.3));
+                .whileHeld(()-> intake.setPoint(-720,-1, 0.5))
+                .whenReleased(()->intake.setPoint(0,0,0.5));
 
         /*new GamepadButton(gamepadDriver, GamepadKeys.Button.DPAD_UP)
                 .whileHeld(()-> intake.setPoint(900, -1,0.5))

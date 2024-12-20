@@ -17,6 +17,6 @@ public class TeleopEscalador extends CommandOpMode {
         Escalador escalador = new Escalador(hardwareMap, telemetry);
         GamepadEx gamepadSecond = new GamepadEx(gamepad2);
         escalador.setDefaultCommand(new EscaladorDEfaulBajarTeleop(escalador, gamepadSecond));
-        escalador.setDefaultCommand(new SubirEscalador(escalador, gamepadSecond));
+       // escalador.setDefaultCommand(new SubirEscalador(escalador, gamepadSecond));
     }
 }
