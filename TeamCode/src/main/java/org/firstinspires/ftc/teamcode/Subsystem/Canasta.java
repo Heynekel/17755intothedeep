@@ -26,13 +26,17 @@ public class Canasta extends SubsystemBase {
 
 
     public void dejar(){
-        c2.turnToAngle(175);
+        c2.turnToAngle(145);
         //c1.turnToAngle(35);
     }
     public void regresar(){
        // c1.turnToAngle(160);
-        c2.turnToAngle(25);
+        c2.turnToAngle(35);
 
+    }
+
+    public double getPos(){
+         return c2.getAngle();
     }
 
     @Override

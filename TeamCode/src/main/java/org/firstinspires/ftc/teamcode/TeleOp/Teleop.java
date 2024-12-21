@@ -10,6 +10,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 
+import org.firstinspires.ftc.teamcode.Commands.ChambersCommand;
 import org.firstinspires.ftc.teamcode.Commands.DejarDefault;
 import org.firstinspires.ftc.teamcode.Commands.EscaladorDefault;
 import org.firstinspires.ftc.teamcode.Commands.MecanumDriveCommand;
@@ -91,11 +92,27 @@ public class Teleop extends CommandOpMode {
 
 
         elevatorSystem.setDefaultCommand(new DejarDefault(elevatorSystem, canasta, intake, gamepadSecond));
+       // elevatorSystem.setDefaultCommand(new ChambersCommand(elevatorSystem, gamepadSecond, intake));
+
+        new GamepadButton(gamepadSecond, GamepadKeys.Button.DPAD_UP)
+                .whileHeld(()-> intake.setPosition(-256))
+                .whileHeld(()-> elevatorSystem.setPosition(400));
+
+        new GamepadButton(gamepadSecond, GamepadKeys.Button.RIGHT_BUMPER)
+                .whileHeld(()-> intake.setPosition(-256))
+                .whileHeld(()-> elevatorSystem.setPosition(900));
+
 
         new GamepadButton(gamepadSecond, GamepadKeys.Button.LEFT_BUMPER)
+                .whileHeld(()-> intake.setPoint(-305,1, 0.5))
+                .whenReleased(()->intake.setPoint(0,0,0.5));
+
+
+
+       /* new GamepadButton(gamepadSecond, GamepadKeys.Button.LEFT_BUMPER)
                 .whileHeld(()-> intake.agarrar(1))
                 .whenReleased(()-> intake.agarrar(0))
-                .whenReleased(()->intake.setPosition(-256));
+                .whenReleased(()->intake.setPosition(-256));*/
 
 
 
@@ -113,8 +130,11 @@ public class Teleop extends CommandOpMode {
 
          */
 
-        new  GamepadButton(gamepadSecond, GamepadKeys.Button.RIGHT_STICK_BUTTON)
+        new  GamepadButton(gamepadSecond, GamepadKeys.Button.LEFT_STICK_BUTTON)
                 .whenPressed(()->elevatorSystem.resetarmsystemticks());
+
+        new  GamepadButton(gamepadSecond, GamepadKeys.Button.RIGHT_STICK_BUTTON)
+                .whenPressed(()->sampleMecanumDrive.turn(6.01));
 
         /*new GamepadButton(gamepadSecond, GamepadKeys.Button.DPAD_UP)
                 .whileHeld(()-> intake.setPoint(900, 1,0.5))

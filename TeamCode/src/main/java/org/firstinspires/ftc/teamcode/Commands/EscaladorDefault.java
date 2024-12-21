@@ -33,7 +33,7 @@ public class EscaladorDefault extends CommandBase {
 //Posotions
 
         if (gamepadEx.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER)> .5){
-            CommandScheduler.getInstance().schedule(new InstantCommand(()->escalador.setPosition(2800)));
+            CommandScheduler.getInstance().schedule(new InstantCommand(()->escalador.setPosition(2500)));
         }
 
         if (gamepadEx.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER)> .5){
@@ -42,7 +42,7 @@ public class EscaladorDefault extends CommandBase {
 
         if (gamepadEx.getButton(GamepadKeys.Button.DPAD_RIGHT)) {
 
-            CommandScheduler.getInstance().schedule(new InstantCommand(()->escalador.setPosition(900)));
+            CommandScheduler.getInstance().schedule(new InstantCommand(()->escalador.setPosition(200)));
         }
 
 

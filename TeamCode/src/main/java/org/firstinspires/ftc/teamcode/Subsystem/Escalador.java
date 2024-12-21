@@ -22,10 +22,12 @@ public class Escalador extends SubsystemBase {
         escalador = hardwareMap.get(DcMotorEx.class, " escalador");
         escalador.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         escalador.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        escalador.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
 
     }
 
-    public  void setPower1( int i){
+    public  void setVelocity( int i){
         escalador.setVelocity(i);
     }
 
@@ -46,7 +48,7 @@ escalador.setPower(power);
         return isAtSetPoint;
     }
 public void setPosition(int pos ){
-        escalador.setVelocity(5000);
+        escalador.setVelocity(6000);
         escalador.setTargetPosition(pos);
         escalador.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 }
@@ -55,12 +57,15 @@ public void setPosition(int pos ){
         escalador.setTargetPosition(position);
         escalador.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         escalador.setPower(power);
-///
+
 
     }
     @Override
     public void periodic(){
-        telemetry.addData("escalador", escalador.getCurrentPosition());
+        telemetry.addData("escalador", escalador.getTargetPosition());
+        telemetry.addData("posicion", escalador.getCurrentPosition());
+        telemetry.addData("Velocidad", escalador.getVelocity());
+        telemetry.addData("Poder", escalador.getPower());
 
     }
 }

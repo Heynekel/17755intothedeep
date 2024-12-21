@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Commands;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandScheduler;
+import com.arcrobotics.ftclib.command.ConditionalCommand;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.WaitCommand;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
@@ -29,18 +30,21 @@ public class DejarDefault extends CommandBase {
             CommandScheduler.getInstance().schedule(new InstantCommand(()-> intake.setPosition(-256)));
             CommandScheduler.getInstance().schedule(new WaitCommand(10000));
             CommandScheduler.getInstance().schedule(new InstantCommand(() -> elevatorSystem.setPosition(2150)));
+            CommandScheduler.getInstance().schedule(new InstantCommand(()-> canasta.dejar()));
+            CommandScheduler.getInstance().schedule(new ConditionalCommand(new InstantCommand(()->canasta.regresar()), new InstantCommand(()->canasta.dejar()), ()-> canasta.getPos() > 145));
+
         }
         if (elevatorSystem.getArmsystemPosition()>2000 ){
             canasta.dejar();
         }
-
         if (elevatorSystem.getArmsystemPosition()>900 ){
             canasta.regresar();
         }
+
         if (gamepadEx.getButton(GamepadKeys.Button.B)) {
                 CommandScheduler.getInstance().schedule(new InstantCommand(()-> intake.setPosition(-256)));
                 CommandScheduler.getInstance().schedule(new WaitCommand(350));
-                CommandScheduler.getInstance().schedule(new InstantCommand(() -> elevatorSystem.setPosition(950)));
+                CommandScheduler.getInstance().schedule(new InstantCommand(() -> elevatorSystem.setPosition(960)));
                 CommandScheduler.getInstance().schedule(new WaitCommand(20000));
                 CommandScheduler.getInstance().schedule(new InstantCommand(() -> canasta.dejar()));
         }
@@ -48,6 +52,19 @@ public class DejarDefault extends CommandBase {
             CommandScheduler.getInstance().schedule(new InstantCommand(() -> canasta.regresar()));
                 CommandScheduler.getInstance().schedule(new InstantCommand(()-> intake.setPosition(-256)));
                 CommandScheduler.getInstance().schedule(new InstantCommand(() -> elevatorSystem.setPosition(0)));
+        }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        if (gamepadEx.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > .5){
+            CommandScheduler.getInstance().schedule(new InstantCommand(()-> intake.setPosition(-256)));
+            CommandScheduler.getInstance().schedule(new InstantCommand(()-> elevatorSystem.setPosition(1310)));
+
+        }
+
+        if (gamepadEx.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > .5){
+            CommandScheduler.getInstance().schedule(new InstantCommand(()-> intake.setPosition(-256)));
+            CommandScheduler.getInstance().schedule(new InstantCommand(()-> elevatorSystem.setPosition(325)));
         }
         }
     }
