@@ -24,7 +24,7 @@ Canasta canasta;
     public void initialize() {
         intake = new Intake(hardwareMap, telemetry);
         sampleMecanumDrive = new SampleMecanumDrive(hardwareMap);
-        mecanumDriveSubsystem = new MecanumDriveSubsystem(sampleMecanumDrive, false, false);
+        mecanumDriveSubsystem = new MecanumDriveSubsystem(sampleMecanumDrive, true);
         autosRed = new AutosRed(mecanumDriveSubsystem, intake, elevatorSystem, canasta);
         elevatorSystem = new ElevatorSystem(hardwareMap, telemetry);
         schedule(autosRed);

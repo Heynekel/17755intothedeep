@@ -26,7 +26,7 @@ public class Teleop extends CommandOpMode {
     @Override
     public void initialize() {
         SampleMecanumDrive sampleMecanumDrive = new SampleMecanumDrive(hardwareMap);
-        MecanumDriveSubsystem driveSubsystem = new MecanumDriveSubsystem(sampleMecanumDrive, false, false);
+        MecanumDriveSubsystem driveSubsystem = new MecanumDriveSubsystem(sampleMecanumDrive, true);
         GamepadEx gamepadDriver = new GamepadEx(gamepad1);
         GamepadEx gamepadSecond = new GamepadEx(gamepad2);
         Intake intake = new Intake(hardwareMap, telemetry);

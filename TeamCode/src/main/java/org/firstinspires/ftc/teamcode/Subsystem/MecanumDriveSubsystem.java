@@ -17,12 +17,12 @@ public class MecanumDriveSubsystem extends SubsystemBase {
     private final SampleMecanumDrive drive;
     private final boolean fieldCentric;
     private boolean isInverted = true;
-    private final boolean isRedAlliance;
 
-    public MecanumDriveSubsystem(SampleMecanumDrive drive, boolean isFieldCentric, boolean isRedAlliance) {
+
+    public MecanumDriveSubsystem(SampleMecanumDrive drive, boolean isFieldCentric) {
         this.drive = drive;
         fieldCentric = isFieldCentric;
-        this.isRedAlliance = isRedAlliance;
+
     }
 
     public void setMode(DcMotor.RunMode mode) {
@@ -56,23 +56,16 @@ public class MecanumDriveSubsystem extends SubsystemBase {
     public void drive(double leftY, double leftX, double rightX) {
         Pose2d poseEstimate = getPoseEstimate();
 
-        Vector2d input;
-        if(!isRedAlliance) {
-            input = new Vector2d(-leftY, -leftX).rotated(
-                    fieldCentric ? -poseEstimate.getHeading() + 6.2445 : 1.570795
-            );
-        }else{
-            input = new Vector2d(-leftY, -leftX).rotated(
-                    fieldCentric ? -poseEstimate.getHeading() +3.14159 + 1.570795 : 0
-            );
-        }
+        Vector2d input = new Vector2d(-leftY, -leftX).rotated(
+                fieldCentric ? -poseEstimate.getHeading() : 0
+        );
 
         drive.setWeightedDrivePower(
                 new Pose2d(
-                        /*isInverted ? input.getX() : -input.getX(),
-                        isInverted ? input.getY() : -input.getY(),*/
-                        -input.getX(),
-                        input.getY(),
+                        isInverted ? input.getX() : -input.getX(),
+                        isInverted ? input.getY() : -input.getY(),
+                        //input.getX(),
+                        //input.getY(),
                         -rightX
                 )
         );
