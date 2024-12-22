@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.Subsystem;
 
-import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -9,14 +8,14 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class Intake extends SubsystemBase {
+public class IntakeSubsystem extends SubsystemBase {
 
         HardwareMap hardwareMap;
         Telemetry telemetry;
         CRServo ser1;
         DcMotorEx intakearm;
 
-        public  Intake(HardwareMap hardwareMap, Telemetry telemetry){
+        public IntakeSubsystem(HardwareMap hardwareMap, Telemetry telemetry){
             this.hardwareMap = hardwareMap;
             this.telemetry = telemetry;
 
@@ -33,7 +32,7 @@ public class Intake extends SubsystemBase {
         public  void resetintakearmtiks(){
             intakearm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
-        public void setPosition(int pos){
+        public void setArmPosition(int pos){
             intakearm.setPower(1);
             intakearm.setTargetPosition(pos);
             intakearm.setMode(DcMotor.RunMode.RUN_TO_POSITION);

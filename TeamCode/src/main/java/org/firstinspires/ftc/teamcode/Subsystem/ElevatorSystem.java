@@ -25,7 +25,7 @@ public class ElevatorSystem extends SubsystemBase {
         brazoizq.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
-    public void resetarmsystemticks() {
+    public void resetTicks() {
         brazoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         brazoizq.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }

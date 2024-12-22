@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.Commands.EscaladorDefault;
 import org.firstinspires.ftc.teamcode.Commands.SubirEscalador;
 import org.firstinspires.ftc.teamcode.Subsystem.Escalador;
 
-@TeleOp
+//@TeleOp
 public class TeleopEscalador extends CommandOpMode {
 ///
     @Override

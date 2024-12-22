@@ -27,6 +27,6 @@ public class ElevatorCommand extends CommandBase {
     }
     @Override
     public boolean isFinished(){
-        return m_elevator.getElevatorPosition() > (goal - 12);
+        return m_elevator.getElevatorPosition() > (goal - 20);
     }
 }

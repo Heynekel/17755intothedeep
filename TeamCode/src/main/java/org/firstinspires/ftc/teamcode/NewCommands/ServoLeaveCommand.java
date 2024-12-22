@@ -29,6 +29,6 @@ public class ServoLeaveCommand extends CommandBase {
 
    @Override
     public boolean isFinished() {
-        return m_elevator.getElevatorPosition() > 2100;   //true ya terminar
+        return m_elevator.getElevatorPosition() > conditional+590;   //true ya terminar
    }
 }

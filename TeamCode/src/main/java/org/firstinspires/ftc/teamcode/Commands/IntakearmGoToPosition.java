@@ -2,14 +2,14 @@ package org.firstinspires.ftc.teamcode.Commands;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 
-import org.firstinspires.ftc.teamcode.Subsystem.Intake;
+import org.firstinspires.ftc.teamcode.Subsystem.IntakeSubsystem;
 
 public class IntakearmGoToPosition extends CommandBase {
 
-    Intake intake;
+    IntakeSubsystem intake;
     int setPoint;
 
-    public  IntakearmGoToPosition(Intake intake, int setPoint){
+    public  IntakearmGoToPosition(IntakeSubsystem intake, int setPoint){
         this.intake = intake;
         this.setPoint = setPoint;
 

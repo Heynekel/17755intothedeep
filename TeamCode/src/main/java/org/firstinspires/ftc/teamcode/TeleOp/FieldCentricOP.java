@@ -3,8 +3,6 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
-import com.arcrobotics.ftclib.command.ConditionalCommand;
-import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.RunCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
@@ -22,18 +20,18 @@ import org.firstinspires.ftc.teamcode.NewCommands.ServoReturnCommand;
 import org.firstinspires.ftc.teamcode.Subsystem.Canasta;
 import org.firstinspires.ftc.teamcode.Subsystem.ElevatorSystem;
 import org.firstinspires.ftc.teamcode.Subsystem.Escalador;
-import org.firstinspires.ftc.teamcode.Subsystem.Intake;
+import org.firstinspires.ftc.teamcode.Subsystem.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.MecanumDriveSubsystem;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 @TeleOp
-public class Teleop extends CommandOpMode {
+public class FieldCentricOP extends CommandOpMode {
 
     SampleMecanumDrive sampleMecanumDrive;
     MecanumDriveSubsystem driveSubsystem;
     GamepadEx chassisDriver;
     GamepadEx subsystemsDriver;
-    Intake m_intake;
+    IntakeSubsystem m_intake;
     ElevatorSystem m_elevator;
     Canasta m_canasta;
     Escalador m_escalador;
@@ -41,10 +39,10 @@ public class Teleop extends CommandOpMode {
     @Override
     public void initialize() {
         sampleMecanumDrive = new SampleMecanumDrive(hardwareMap);
-        driveSubsystem = new MecanumDriveSubsystem(sampleMecanumDrive, false);
+        driveSubsystem = new MecanumDriveSubsystem(sampleMecanumDrive, true);
         chassisDriver = new GamepadEx(gamepad1);
         subsystemsDriver = new GamepadEx(gamepad2);
-        m_intake = new Intake(hardwareMap, telemetry);
+        m_intake = new IntakeSubsystem(hardwareMap, telemetry);
         m_elevator = new ElevatorSystem(hardwareMap, telemetry);
         m_canasta = new Canasta(hardwareMap, telemetry);
         m_escalador = new Escalador(hardwareMap, telemetry);
@@ -71,7 +69,7 @@ public class Teleop extends CommandOpMode {
         new GamepadButton(chassisDriver, GamepadKeys.Button.LEFT_BUMPER)
                 .whileHeld(()-> m_intake.agarrar(1))
                 .whenReleased(()-> m_intake.agarrar(0))
-                .whenReleased(()-> m_intake.setPosition(-256));
+                .whenReleased(()-> m_intake.setArmPosition(-256));
 
         new  GamepadButton(chassisDriver, GamepadKeys.Button.DPAD_UP)
                 .whileHeld(()-> m_intake.setPoint(m_intake.getPosition()-100, 0, .3))
@@ -102,20 +100,28 @@ public class Teleop extends CommandOpMode {
 
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.B)
-                .whenPressed(new ElevatorCommand(m_elevator,960)
-                        .alongWith(
-                                new ConditionalCommand(
-                                        new InstantCommand(()-> m_canasta.regresar()),
-                                        new InstantCommand(()-> m_canasta.regresar()),
-                                        ()-> m_elevator.getElevatorPosition() > 100)));
+                .whenPressed(
+                        new SequentialCommandGroup(
+                                new ParallelCommandGroup(
+                                        new ElevatorCommand(m_elevator,960),
+                                        new ServoLeaveCommand(m_canasta,m_elevator,359)),
+                                new SequentialCommandGroup(
+                                        new WaitCommand(400),
+                                        new ServoReturnCommand(m_canasta),
+                                        new WaitCommand(500),
+                                        new ElevatorCommand(m_elevator,0)
+                                )
+
+                        )
+                );
 
 
         new GamepadButton(subsystemsDriver, GamepadKeys.Button.DPAD_UP)
-                .whileHeld(()-> m_intake.setPosition(-256))
+                .whileHeld(()-> m_intake.setArmPosition(-256))
                 .whileHeld(()-> m_elevator.setPosition(400));
 
         new GamepadButton(subsystemsDriver, GamepadKeys.Button.RIGHT_BUMPER)
-                .whileHeld(()-> m_intake.setPosition(-256))
+                .whileHeld(()-> m_intake.setArmPosition(-256))
                 .whileHeld(()-> m_elevator.setPosition(900));
 //
 
@@ -152,7 +158,7 @@ public class Teleop extends CommandOpMode {
 
 
         new  GamepadButton(subsystemsDriver, GamepadKeys.Button.START)
-                .whenPressed(()-> m_elevator.resetarmsystemticks());
+                .whenPressed(()-> m_elevator.resetTicks());
 
 
         driveSubsystem.setDefaultCommand(new MecanumDriveCommand(

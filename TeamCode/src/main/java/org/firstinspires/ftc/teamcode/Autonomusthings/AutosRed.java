@@ -1,16 +1,10 @@
 package org.firstinspires.ftc.teamcode.Autonomusthings;
 
-import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
-import com.arcrobotics.ftclib.command.WaitCommand;
 
-import org.firstinspires.ftc.teamcode.Commands.IntakeCommand;
-import org.firstinspires.ftc.teamcode.Commands.IntakeCommandforAutonomus;
-import org.firstinspires.ftc.teamcode.Commands.IntakearmGoToPosition;
-import org.firstinspires.ftc.teamcode.Commands.TrajectoryFollowerCommand;
 import org.firstinspires.ftc.teamcode.Subsystem.Canasta;
 import org.firstinspires.ftc.teamcode.Subsystem.ElevatorSystem;
-import org.firstinspires.ftc.teamcode.Subsystem.Intake;
+import org.firstinspires.ftc.teamcode.Subsystem.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.MecanumDriveSubsystem;
 import org.firstinspires.ftc.teamcode.Trejectories.RedTrejectories;
 
@@ -19,7 +13,7 @@ public class AutosRed extends SequentialCommandGroup {
     RedTrejectories redTrejectories = new RedTrejectories();
 
 
-    public AutosRed(MecanumDriveSubsystem mecanumDriveSubsystem, Intake intake, ElevatorSystem elevatorSystem, Canasta canasta) {
+    public AutosRed(MecanumDriveSubsystem mecanumDriveSubsystem, IntakeSubsystem intake, ElevatorSystem elevatorSystem, Canasta canasta) {
         /*
     }
         addCommands(
