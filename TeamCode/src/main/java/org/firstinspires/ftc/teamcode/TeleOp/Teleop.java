@@ -15,12 +15,10 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 
-import org.firstinspires.ftc.teamcode.Commands.EscaladorDefault;
 import org.firstinspires.ftc.teamcode.Commands.MecanumDriveCommand;
-import org.firstinspires.ftc.teamcode.NewCode.ElevatorCommand;
-import org.firstinspires.ftc.teamcode.NewCode.NothingCommand;
-import org.firstinspires.ftc.teamcode.NewCode.ServoLeaveCommand;
-import org.firstinspires.ftc.teamcode.NewCode.ServoReturnCommand;
+import org.firstinspires.ftc.teamcode.NewCommands.ElevatorCommand;
+import org.firstinspires.ftc.teamcode.NewCommands.ServoLeaveCommand;
+import org.firstinspires.ftc.teamcode.NewCommands.ServoReturnCommand;
 import org.firstinspires.ftc.teamcode.Subsystem.Canasta;
 import org.firstinspires.ftc.teamcode.Subsystem.ElevatorSystem;
 import org.firstinspires.ftc.teamcode.Subsystem.Escalador;
