@@ -1,4 +1,3 @@
-
 package org.firstinspires.ftc.teamcode.TeleOp;
 
 
@@ -13,6 +12,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Commands.DejarDefault;
 import org.firstinspires.ftc.teamcode.Commands.EscaladorDefault;
 import org.firstinspires.ftc.teamcode.Commands.MecanumDriveCommand;
+import org.firstinspires.ftc.teamcode.Commands.TurnchasisCommand;
 import org.firstinspires.ftc.teamcode.Subsystem.Canasta;
 import org.firstinspires.ftc.teamcode.Subsystem.ElevatorSystem;
 import org.firstinspires.ftc.teamcode.Subsystem.Escalador;
@@ -26,19 +26,13 @@ public class Teleop extends CommandOpMode {
     @Override
     public void initialize() {
         SampleMecanumDrive sampleMecanumDrive = new SampleMecanumDrive(hardwareMap);
-        MecanumDriveSubsystem driveSubsystem = new MecanumDriveSubsystem(sampleMecanumDrive, true);
+        MecanumDriveSubsystem driveSubsystem = new MecanumDriveSubsystem(sampleMecanumDrive, false);
         GamepadEx gamepadDriver = new GamepadEx(gamepad1);
         GamepadEx gamepadSecond = new GamepadEx(gamepad2);
         Intake intake = new Intake(hardwareMap, telemetry);
         ElevatorSystem elevatorSystem = new ElevatorSystem(hardwareMap, telemetry);
         Canasta canasta = new Canasta(hardwareMap, telemetry);
         Escalador escalador = new Escalador(hardwareMap, telemetry);
-
-
-
-        /*new GamepadButton(gamepadDriver, GamepadKeys.Button.RIGHT_BUMPER)
-                .whileHeld(()-> intake.agarrar(-1))
-                        .whenReleased(()->intake.agarrar(0));*/
 
         new GamepadButton(gamepadDriver, GamepadKeys.Button.START)
                 .whenPressed(()->intake.resetintakearmtiks());
@@ -47,16 +41,11 @@ public class Teleop extends CommandOpMode {
                 .whileHeld(()-> intake.setPoint(-720,-1, 0.5))
                 .whenReleased(()->intake.setPoint(0,0,0.5));
 
-        /*new GamepadButton(gamepadDriver, GamepadKeys.Button.DPAD_UP)
-                .whileHeld(()-> intake.setPoint(900, -1,0.5))
-                .whenReleased(()->intake.setPoint(20, 0,0.5));*/
-        //raul gay
-
 
         new GamepadButton(gamepadDriver, GamepadKeys.Button.LEFT_BUMPER)
                 .whileHeld(()-> intake.agarrar(1))
-                .whenReleased(()-> intake.agarrar(0))
-                .whenReleased(()->intake.setPosition(-256));
+                .whenReleased(()-> intake.agarrar(0));
+               // .whenReleased(()->intake.setPosition(-256));
 
         new  GamepadButton(gamepadDriver, GamepadKeys.Button.DPAD_UP)
                 .whileHeld(()-> intake.setPoint(intake.getPosition()-100, 0, .3))
@@ -66,84 +55,40 @@ public class Teleop extends CommandOpMode {
                 .whileHeld(()-> intake.setPoint(intake.getPosition()+100, 0, .3))
                 .whenReleased(()-> intake.setPoint(intake.getPosition(), 0, .3));
 
-       /* new  GamepadButton(gamepadDriver, GamepadKeys.Button.Y)
-                .whileHeld(()-> elevatorSystem.setPower(1))
-                .whenReleased(()->elevatorSystem.setPower(0));
 
-        new GamepadButton(gamepadDriver, GamepadKeys.Button.A)
-                .whileHeld(()-> elevatorSystem.setPower(-1))
-                .whenReleased(()->elevatorSystem.setPower(0));*/
-///////////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////
-
-       /* new GamepadButton(gamepadSecond, GamepadKeys.Button.LEFT_BUMPER)
-                .whileHeld(()-> intake.SetPower(-0.5))
-                .whenReleased(()->intake.SetPower(0));*/
-
-
-        /*new GamepadButton(gamepadSecond, GamepadKeys.Button.Y)
-                .whenPressed(()-> elevatorSystem.setPosition(2150));
-
-        new GamepadButton(gamepadSecond, GamepadKeys.Button.B)
-                .whenPressed(()-> elevatorSystem.setPosition(900));
-         */
-        //1250 low basket
-
 
         elevatorSystem.setDefaultCommand(new DejarDefault(elevatorSystem, canasta, intake, gamepadSecond));
 
-
         new GamepadButton(gamepadSecond, GamepadKeys.Button.DPAD_UP)
-                .whileHeld(()-> intake.setPosition(-256))
-                .whileHeld(()-> elevatorSystem.setPosition(400));
+                .whileHeld(()-> intake.setPosition(-175))
+                .whileHeld(()-> elevatorSystem.setPosition(1315));
 
-        new GamepadButton(gamepadSecond, GamepadKeys.Button.RIGHT_BUMPER)
-                .whileHeld(()-> intake.setPosition(-256))
+        new GamepadButton(gamepadSecond, GamepadKeys.Button.DPAD_DOWN)
+                .whileHeld(()-> intake.setPosition(-175))
                 .whileHeld(()-> elevatorSystem.setPosition(900));
-//
+
+
+        new GamepadButton(gamepadSecond, GamepadKeys.Button.DPAD_RIGHT)
+                .whileHeld(()-> intake.setPosition(-175))
+                .whileHeld(()-> elevatorSystem.setPosition(325));
+
 
         new GamepadButton(gamepadSecond, GamepadKeys.Button.LEFT_BUMPER)
                 .whileHeld(()-> intake.setPoint(-305,1, 0.5))
                 .whenReleased(()->intake.setPoint(0,0,0.5));
 
-
-
-       /* new GamepadButton(gamepadSecond, GamepadKeys.Button.LEFT_BUMPER)
-                .whileHeld(()-> intake.agarrar(1))
-                .whenReleased(()-> intake.agarrar(0))
-                .whenReleased(()->intake.setPosition(-256));*/
-
-
-
-
-       /* new  GamepadButton(gamepadSecond, GamepadKeys.Button.DPAD_DOWN)
-                .whenPressed(()->canasta.regresar());
-
-        new  GamepadButton(gamepadSecond, GamepadKeys.Button.DPAD_UP)
-                .whenPressed(()-> canasta.dejar());*/
-
-
-
-        /*new GamepadButton(gamepadSecond, GamepadKeys.Button.A)
-                .whenPressed(()-> elevatorSystem.setPosition(10));
-
-         */
-
         new  GamepadButton(gamepadSecond, GamepadKeys.Button.LEFT_STICK_BUTTON)
                 .whenPressed(()->elevatorSystem.resetarmsystemticks());
 
-        new  GamepadButton(gamepadSecond, GamepadKeys.Button.RIGHT_STICK_BUTTON)
-                .whenPressed(()->sampleMecanumDrive.turn(6.01));
-
-        /*new GamepadButton(gamepadSecond, GamepadKeys.Button.DPAD_UP)
-                .whileHeld(()-> intake.setPoint(900, 1,0.5))
-                        .whenReleased(()->intake.setPoint(20, 0,0.5));*/
+       /* new  GamepadButton(gamepadSecond, GamepadKeys.Button.RIGHT_STICK_BUTTON)
+                .whenPressed(TurnchasisCommand);*/
 
         driveSubsystem.setDefaultCommand(new MecanumDriveCommand(
                 driveSubsystem, () -> -gamepadDriver.getLeftY(), gamepadDriver::getLeftX, gamepadDriver::getRightX
         ));
 
-       escalador.setDefaultCommand(new EscaladorDefault(escalador, gamepadSecond));
+        //escalador.setDefaultCommand(new EscaladorDefault(escalador, gamepadSecond));
         schedule(new RunCommand(() -> {
             driveSubsystem.update();
             driveSubsystem.updatePoseEstimate();
@@ -153,3 +98,4 @@ public class Teleop extends CommandOpMode {
         }));
     }
 }
+
