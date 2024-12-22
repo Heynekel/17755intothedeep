@@ -40,9 +40,9 @@ public class EscaladorDefault extends CommandBase {
             CommandScheduler.getInstance().schedule(new InstantCommand(()->escalador.setPosition(1800)));
         }
 
-        if (gamepadEx.getButton(GamepadKeys.Button.DPAD_RIGHT)) {
+        if (gamepadEx.getButton(GamepadKeys.Button.DPAD_LEFT)) {
 
-            CommandScheduler.getInstance().schedule(new InstantCommand(()->escalador.setPosition(200)));
+            CommandScheduler.getInstance().schedule(new InstantCommand(()->escalador.setPosition(0)));
         }
 
  */
