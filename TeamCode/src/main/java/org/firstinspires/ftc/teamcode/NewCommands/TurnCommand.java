@@ -23,7 +23,6 @@ public TurnCommand( MecanumDriveSubsystem m_mecanumSubsystem, double radians) {
 
     @Override
     public void end(boolean interrupted) {
-
     }
 
 }
