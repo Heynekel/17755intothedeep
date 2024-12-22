@@ -17,7 +17,7 @@ public class IntakeCommandforAutonomus extends CommandBase {
 
     @Override
     public void  execute(){
-        intake.AtSetpoint(setPoint,  0.5);
+        intake.AtSetpoint(setPoint,  1);
     }
 
     @Override

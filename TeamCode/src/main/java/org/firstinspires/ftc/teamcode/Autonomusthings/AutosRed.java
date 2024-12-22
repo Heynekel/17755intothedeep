@@ -1,7 +1,16 @@
 package org.firstinspires.ftc.teamcode.Autonomusthings;
 
+import com.arcrobotics.ftclib.command.InstantCommand;
+import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 
+import org.firstinspires.ftc.teamcode.Commands.EscaladorDefault;
+import org.firstinspires.ftc.teamcode.Commands.IntakeCommand;
+import org.firstinspires.ftc.teamcode.Commands.IntakeCommandforAutonomus;
+import org.firstinspires.ftc.teamcode.Commands.IntakearmGoToPosition;
+import org.firstinspires.ftc.teamcode.Commands.TrajectoryFollowerCommand;
+import org.firstinspires.ftc.teamcode.NewCommands.ElevatorCommand;
 import org.firstinspires.ftc.teamcode.Subsystem.Canasta;
 import org.firstinspires.ftc.teamcode.Subsystem.ElevatorSystem;
 import org.firstinspires.ftc.teamcode.Subsystem.IntakeSubsystem;
@@ -13,28 +22,31 @@ public class AutosRed extends SequentialCommandGroup {
     RedTrejectories redTrejectories = new RedTrejectories();
 
 
-    public AutosRed(MecanumDriveSubsystem mecanumDriveSubsystem, IntakeSubsystem intake, ElevatorSystem elevatorSystem, Canasta canasta) {
-        /*
-    }
+    public AutosRed(MecanumDriveSubsystem m_drive,  IntakeSubsystem m_intake, ElevatorSystem m_elevatorSystem, Canasta m_canasta) {
         addCommands(
-new TrajectoryFollowerCommand(mecanumDriveSubsystem, redTrejectories.reojoiz1(mecanumDriveSubsystem.getDrive())),
-          new IntakearmGoToPosition(intake, -300),
-          new ArmGoToPosition(elevatorSystem, 2150),
-                new WaitCommand(700),
-               // new InstantCommand(canasta::dejar),
-                new ArmGoToPosition(elevatorSystem, 0),
-                new WaitCommand(1000),
-                new TrajectoryFollowerCommand(mecanumDriveSubsystem, redTrejectories.rojoizq2(mecanumDriveSubsystem.getDrive())),
-                new IntakeCommandforAutonomus(intake, -560),
+
+                        new TrajectoryFollowerCommand(m_drive, redTrejectories.reojoiz1(m_drive.getDrive())),
+                        new ElevatorCommand(m_elevatorSystem, 1310),
+                        new TrajectoryFollowerCommand(m_drive, redTrejectories.rojoizq3(m_drive.getDrive())),
+                new IntakeCommandforAutonomus(m_intake, -720),
                 new ParallelCommandGroup(
-                        new IntakeCommand(intake, -1),
-                        new TrajectoryFollowerCommand(mecanumDriveSubsystem, redTrejectories.rojoizq3(mecanumDriveSubsystem.getDrive()))
+                        new IntakeCommand(m_intake, -1),
+                        new TrajectoryFollowerCommand(m_drive, redTrejectories.rojoizq4(m_drive.getDrive()))
                 ),
-                new TrajectoryFollowerCommand(mecanumDriveSubsystem, redTrejectories.rojoizq4(mecanumDriveSubsystem.getDrive()))
+                new IntakeCommandforAutonomus(m_intake, 0),
+                new ParallelCommandGroup(
+                        new IntakeCommand(m_intake, 1),
+                        new TrajectoryFollowerCommand(m_drive, redTrejectories.rojoizq5(m_drive.getDrive()))
+                )
+
         );
 
-     */
+
     }
-}
+
+
+
+    }
+
 
 

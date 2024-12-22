@@ -69,7 +69,7 @@ public class NOFieldCentricOp extends CommandOpMode {
         chassisDriver.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)//Outake
                 .whileHeld(()-> m_intake.agarrar(1))
                 .whenReleased(()-> m_intake.agarrar(0))
-                .whenReleased(()-> m_intake.setArmPosition(-256));
+                .whenReleased(()-> m_intake.setArmPosition(-190));
 
         m_intake.setDefaultCommand(new IntakeArmCommand(m_intake,chassisDriver,subsystemsDriver));
 
@@ -116,16 +116,16 @@ public class NOFieldCentricOp extends CommandOpMode {
                 /*Chamber positions */
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_UP)
-                .whileHeld(()-> m_intake.setArmPosition(-256))
-                .whileHeld(()-> m_elevator.setPosition(1215));
+                .whileHeld(()-> m_intake.setArmPosition(-190))
+                .whileHeld(()-> m_elevator.setPosition(1310));
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_LEFT)
-                .whileHeld(()-> m_intake.setArmPosition(-256))
+                .whileHeld(()-> m_intake.setArmPosition(-190))
                 .whileHeld(()-> m_elevator.setPosition(300));
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_DOWN)
-                .whileHeld(()-> m_intake.setArmPosition(-256))
-                .whileHeld(()-> m_elevator.setPosition(700));
+                .whileHeld(()-> m_intake.setArmPosition(-190))
+                .whileHeld(()-> m_elevator.setPosition(900));
 
         /* Escalator */
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER)

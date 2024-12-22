@@ -36,7 +36,7 @@ public class ElevatorSystem extends SubsystemBase {
     }
 
     public int getElevatorPosition() {
-       return brazoder.getCurrentPosition();
+        return brazoder.getCurrentPosition();
     }
 
     public void setPosition(int pos){

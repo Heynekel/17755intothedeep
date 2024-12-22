@@ -24,7 +24,7 @@ import org.firstinspires.ftc.teamcode.Subsystem.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.MecanumDriveSubsystem;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
-@TeleOp
+//@TeleOp
 public class FieldCentricOP extends CommandOpMode {
 
     SampleMecanumDrive sampleMecanumDrive;
@@ -78,10 +78,17 @@ public class FieldCentricOP extends CommandOpMode {
         new  GamepadButton(chassisDriver, GamepadKeys.Button.DPAD_DOWN)
                 .whileHeld(()-> m_intake.setPoint(m_intake.getPosition()+100, 0, .3))
                 .whenReleased(()-> m_intake.setPoint(m_intake.getPosition(), 0, .3));
+        chassisDriver.getGamepadButton(GamepadKeys.Button.Y)
+                .whileHeld(()-> m_escalador.setVelocity(6000))
+                .whenReleased(()-> m_escalador.setVelocity(0));
+
+        chassisDriver.getGamepadButton(GamepadKeys.Button.A)
+                .whileHeld(()-> m_escalador.setVelocity(-6000))
+                .whenReleased(()-> m_escalador.setVelocity(0));
 
         //1250 low basket
 
-
+/*SubsystemsDriver*/
                 /* Elevator Commands */
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.Y)
                 .whenPressed(
@@ -116,15 +123,21 @@ public class FieldCentricOP extends CommandOpMode {
                 );
 
 
-        new GamepadButton(subsystemsDriver, GamepadKeys.Button.DPAD_UP)
+/*Chambers*/
+        subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_UP)
                 .whileHeld(()-> m_intake.setArmPosition(-256))
-                .whileHeld(()-> m_elevator.setPosition(400));
+                .whileHeld(()-> m_elevator.setPosition(1310));
 
-        new GamepadButton(subsystemsDriver, GamepadKeys.Button.RIGHT_BUMPER)
+        subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_LEFT)
+                .whileHeld(()-> m_intake.setArmPosition(-256))
+                .whileHeld(()-> m_elevator.setPosition(300));
+
+        subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_DOWN)
                 .whileHeld(()-> m_intake.setArmPosition(-256))
                 .whileHeld(()-> m_elevator.setPosition(900));
-//
 
+//
+/*Outake for observation zone*/
         new GamepadButton(subsystemsDriver, GamepadKeys.Button.LEFT_BUMPER)
                 .whileHeld(()-> m_intake.setPoint(-305,1, 0.5))
                 .whenReleased(()-> m_intake.setPoint(0,0,0.5));
@@ -139,21 +152,14 @@ public class FieldCentricOP extends CommandOpMode {
 
 
 
-        new  GamepadButton(subsystemsDriver, GamepadKeys.Button.DPAD_DOWN)
+       /* new  GamepadButton(subsystemsDriver, GamepadKeys.Button.DPAD_DOWN)
                 .whenPressed(()-> m_canasta.regresar());
 
         new  GamepadButton(subsystemsDriver, GamepadKeys.Button.DPAD_UP)
-                .whenPressed(()-> m_canasta.dejar());
+                .whenPressed(()-> m_canasta.dejar());*/
 
 
 
-        chassisDriver.getGamepadButton(GamepadKeys.Button.Y)
-                .whileHeld(()-> m_escalador.setVelocity(6000))
-                .whenReleased(()-> m_escalador.setVelocity(0));
-
-        chassisDriver.getGamepadButton(GamepadKeys.Button.A)
-                .whileHeld(()-> m_escalador.setVelocity(-6000))
-                .whenReleased(()-> m_escalador.setVelocity(0));
 
 
 
