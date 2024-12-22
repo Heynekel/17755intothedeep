@@ -26,12 +26,12 @@ public class Canasta extends SubsystemBase {
 
 
     public void dejar(){
-        c2.turnToAngle(145);
+        c2.turnToAngle(160);
         //c1.turnToAngle(35);
     }
     public void regresar(){
        // c1.turnToAngle(160);
-        c2.turnToAngle(35);
+        c2.turnToAngle(55);
 
     }
 
@@ -41,6 +41,6 @@ public class Canasta extends SubsystemBase {
 
     @Override
     public  void  periodic(){
-telemetry.addData("c2", c2.getAngle(AngleUnit.DEGREES));
+telemetry.addData("Servo 2 position", getPos());
     }
 }

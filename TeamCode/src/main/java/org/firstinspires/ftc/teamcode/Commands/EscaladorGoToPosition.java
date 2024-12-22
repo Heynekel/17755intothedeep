@@ -15,6 +15,7 @@ Escalador escalador;
 
         addRequirements(escalador);
     }
+
     @Override
     public void  execute(){
         escalador.setPoint(1, setPoint);
@@ -24,4 +25,6 @@ Escalador escalador;
     public  boolean isFinished(){
         return  escalador.isAtSetPoint();
     }
+
+
 }

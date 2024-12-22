@@ -5,6 +5,7 @@ import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.localization.Localizer;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder;
+import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
@@ -76,7 +77,7 @@ public class MecanumDriveSubsystem extends SubsystemBase {
     }
 
     public Pose2d getPoseEstimate() {
-        return drive.getPoseEstimate();
+        return drive.getPoseEstimate().times(67.07/60.25);
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
@@ -118,7 +119,5 @@ public class MecanumDriveSubsystem extends SubsystemBase {
     public Localizer getLocalizer() {
         return drive.getLocalizer();
     }
-
-
 
 }

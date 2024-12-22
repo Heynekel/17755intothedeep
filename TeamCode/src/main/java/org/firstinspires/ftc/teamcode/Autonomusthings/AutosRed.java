@@ -1,14 +1,9 @@
 package org.firstinspires.ftc.teamcode.Autonomusthings;
 
-import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.Commands.ArmGoToPosition;
-import org.firstinspires.ftc.teamcode.Commands.DejarDefault;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCommand;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCommandforAutonomus;
 import org.firstinspires.ftc.teamcode.Commands.IntakearmGoToPosition;
@@ -19,14 +14,14 @@ import org.firstinspires.ftc.teamcode.Subsystem.Intake;
 import org.firstinspires.ftc.teamcode.Subsystem.MecanumDriveSubsystem;
 import org.firstinspires.ftc.teamcode.Trejectories.RedTrejectories;
 
-import java.util.function.BooleanSupplier;
-
 public class AutosRed extends SequentialCommandGroup {
 
     RedTrejectories redTrejectories = new RedTrejectories();
 
-    
-    public AutosRed(MecanumDriveSubsystem mecanumDriveSubsystem, Intake intake, ElevatorSystem elevatorSystem, Canasta canasta){
+
+    public AutosRed(MecanumDriveSubsystem mecanumDriveSubsystem, Intake intake, ElevatorSystem elevatorSystem, Canasta canasta) {
+        /*
+    }
         addCommands(
 new TrajectoryFollowerCommand(mecanumDriveSubsystem, redTrejectories.reojoiz1(mecanumDriveSubsystem.getDrive())),
           new IntakearmGoToPosition(intake, -300),
@@ -42,15 +37,10 @@ new TrajectoryFollowerCommand(mecanumDriveSubsystem, redTrejectories.reojoiz1(me
                         new TrajectoryFollowerCommand(mecanumDriveSubsystem, redTrejectories.rojoizq3(mecanumDriveSubsystem.getDrive()))
                 ),
                 new TrajectoryFollowerCommand(mecanumDriveSubsystem, redTrejectories.rojoizq4(mecanumDriveSubsystem.getDrive()))
-
-
-
-
-
-
-
-
         );
-    }
 
+     */
+    }
 }
+
+

@@ -9,7 +9,7 @@ public class ElevatorSystem extends SubsystemBase {
     HardwareMap hardwareMap;
     Telemetry telemetry;
     DcMotorEx brazoizq, brazoder;
-    public static int pos = 750;
+
     public ElevatorSystem(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
         this.hardwareMap = hardwareMap;
@@ -24,36 +24,21 @@ public class ElevatorSystem extends SubsystemBase {
         brazoder.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         brazoizq.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
-    public void setPower(double power) {
-        brazoizq.setPower(power);
-        brazoder.setPower(power);
-    }
+
     public void resetarmsystemticks() {
         brazoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         brazoizq.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
-    public void setPoint(int position, double power) {
-        brazoizq.setTargetPosition(position);
-        brazoizq.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        brazoizq.setPower(power);
 
-        brazoder.setTargetPosition(position);
-        brazoder.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        brazoder.setPower(power);
-    }
     public boolean isAtSetPoint() {
         boolean isAtSetPoint = brazoizq.getCurrentPosition() - brazoizq.getTargetPosition() < brazoizq.getTargetPositionTolerance();
         return isAtSetPoint;
     }
 
-    public boolean isAtSetPoint2() {
-        boolean isAtSetPoint = brazoder.getCurrentPosition() - brazoder.getTargetPosition() < brazoder.getTargetPositionTolerance();
-        return isAtSetPoint;
-    }
-
-    public int getArmsystemPosition() {
+    public int getElevatorPosition() {
        return brazoder.getCurrentPosition();
     }
+
     public void setPosition(int pos){
         brazoizq.setVelocity(6000);
         brazoizq.setTargetPosition(pos);
@@ -66,7 +51,7 @@ public class ElevatorSystem extends SubsystemBase {
 
     @Override
     public  void periodic(){
-        telemetry.addData("elevadorder", brazoder.getCurrentPosition());
-        telemetry.addData("elevadorizq", brazoizq.getCurrentPosition());
+        telemetry.addData("Elevator right position", brazoder.getCurrentPosition());
+        telemetry.addData("Elevator left position", brazoizq.getCurrentPosition());
     }
 }
