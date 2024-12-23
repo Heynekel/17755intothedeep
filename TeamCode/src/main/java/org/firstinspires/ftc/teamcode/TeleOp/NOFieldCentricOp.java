@@ -117,7 +117,7 @@ public class NOFieldCentricOp extends CommandOpMode {
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_UP)
                 .whileHeld(()-> m_intake.setArmPosition(-190))
-                .whileHeld(()-> m_elevator.setPosition(1310));
+                .whileHeld(()-> m_elevator.setPosition(1350));
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_LEFT)
                 .whileHeld(()-> m_intake.setArmPosition(-190))
@@ -139,6 +139,7 @@ public class NOFieldCentricOp extends CommandOpMode {
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.LEFT_STICK_BUTTON)
                         .whileHeld(()-> m_canasta.dejar())
+                .whileHeld(()->m_intake.setArmPosition(-190))
                                 .whenReleased(()-> m_canasta.regresar());
 
         schedule(new RunCommand(() -> {

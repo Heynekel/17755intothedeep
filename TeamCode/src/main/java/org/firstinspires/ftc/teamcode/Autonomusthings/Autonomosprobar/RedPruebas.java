@@ -21,13 +21,17 @@ Canasta canasta;
 
     @Override
     public void initialize() {
-        intake = new IntakeSubsystem(hardwareMap, telemetry);
-        sampleMecanumDrive = new SampleMecanumDrive(hardwareMap);
+        sampleMecanumDrive = new SampleMecanumDrive(hardwareMap);/*siempre van al incio*/
         mecanumDriveSubsystem = new MecanumDriveSubsystem(sampleMecanumDrive, false);
-        autosRed = new AutosRed(mecanumDriveSubsystem, intake, elevatorSystem, canasta);
-        elevatorSystem = new ElevatorSystem(hardwareMap, telemetry);
-        schedule(autosRed);
+
+        intake = new IntakeSubsystem(hardwareMap, telemetry);
         canasta = new Canasta(hardwareMap, telemetry);
+        elevatorSystem = new ElevatorSystem(hardwareMap, telemetry);
+
+
+        autosRed = new AutosRed(mecanumDriveSubsystem, intake, elevatorSystem, canasta);/*Siempre al final*/
+        schedule(autosRed);
+
 
     }
 }

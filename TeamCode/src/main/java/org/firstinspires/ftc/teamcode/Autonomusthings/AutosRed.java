@@ -23,29 +23,51 @@ public class AutosRed extends SequentialCommandGroup {
 
 
     public AutosRed(MecanumDriveSubsystem m_drive,  IntakeSubsystem m_intake, ElevatorSystem m_elevatorSystem, Canasta m_canasta) {
-        addCommands(
 
-                        new TrajectoryFollowerCommand(m_drive, redTrejectories.reojoiz1(m_drive.getDrive())),
-                        new ElevatorCommand(m_elevatorSystem, 1310),
-                        new TrajectoryFollowerCommand(m_drive, redTrejectories.rojoizq3(m_drive.getDrive())),
+
+        addCommands(
+                        new ParallelCommandGroup(
+                                new TrajectoryFollowerCommand(m_drive, redTrejectories.reojoiz1(m_drive.getDrive())),
+                                new ElevatorCommand(m_elevatorSystem, 1400)
+                        ),
+                        new ParallelCommandGroup(
+                                new IntakeCommandforAutonomus(m_intake, -190),
+                                new ElevatorCommand(m_elevatorSystem, 900)
+                        ),
+                new WaitCommand(260),
+                        new ParallelCommandGroup(
+                                new IntakeCommandforAutonomus(m_intake, -190),
+                                new ElevatorCommand(m_elevatorSystem, 0),
+                                new TrajectoryFollowerCommand(m_drive, redTrejectories.rojoizq3(m_drive.getDrive()))
+                        ),
+
                 new IntakeCommandforAutonomus(m_intake, -720),
+
                 new ParallelCommandGroup(
                         new IntakeCommand(m_intake, -1),
                         new TrajectoryFollowerCommand(m_drive, redTrejectories.rojoizq4(m_drive.getDrive()))
                 ),
+
                 new IntakeCommandforAutonomus(m_intake, 0),
+
                 new ParallelCommandGroup(
                         new IntakeCommand(m_intake, 1),
                         new TrajectoryFollowerCommand(m_drive, redTrejectories.rojoizq5(m_drive.getDrive()))
-                )
+                ),
+                 new ParallelCommandGroup(
+                  new IntakeCommandforAutonomus(m_intake, -190),
+                  new ElevatorCommand(m_elevatorSystem, 2150)
+          ),
+                new InstantCommand(()-> m_canasta.dejar()),
+        new WaitCommand(500),
+        new ParallelCommandGroup(
+                new InstantCommand(()-> m_canasta.regresar()),
+                new ElevatorCommand(m_elevatorSystem, 0)
+        )
 
         );
 
-
     }
-
-
-
     }
 
 
