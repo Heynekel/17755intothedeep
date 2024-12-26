@@ -22,6 +22,7 @@ public class IntakeSubsystem extends SubsystemBase {
             ser1 = hardwareMap.get(CRServo.class, "ser1");
             intakearm =  hardwareMap.get(DcMotorEx.class, "intakearm");
             intakearm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
             intakearm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         }

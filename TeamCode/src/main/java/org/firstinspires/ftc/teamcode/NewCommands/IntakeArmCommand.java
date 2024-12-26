@@ -23,7 +23,7 @@ public class IntakeArmCommand extends CommandBase {
     @Override
     public void execute() {
         if(gamepad.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.2){
-            m_intake.setPoint(-720,-1,0.5);
+            m_intake.setPoint(-650,-1,0.5);
         }
         else{
             m_intake.agarrar(0);

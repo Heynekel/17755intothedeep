@@ -56,38 +56,65 @@ public class NOFieldCentricOp extends CommandOpMode {
         ));
 
         chassisDriver.getGamepadButton(
-                GamepadKeys.Button.LEFT_STICK_BUTTON)
+                GamepadKeys.Button.RIGHT_STICK_BUTTON)
                 .whenPressed(
                         new InstantCommand(
                                 ()->m_drive.toggleInverted()));
 
-        /* Intake */
+        /*
+         Intake
+
+         */
         chassisDriver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER)
-                .whileHeld(()-> m_intake.setPoint(-720,-1, 0.5))
-                .whenReleased(()-> m_intake.setPoint(0,0,0.5)); //Intake
+                .whileHeld(()-> m_intake.setPoint(-675,-1, 0.5))
+                .whileHeld(m_canasta::regresar)
+                .whenReleased(()-> m_intake.setPoint(0,0,0.5));//Intake
 
         chassisDriver.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)//Outake
                 .whileHeld(()-> m_intake.agarrar(1))
+                .whileHeld(()-> m_canasta.IvansFunction())
+
                 .whenReleased(()-> m_intake.agarrar(0))
-                .whenReleased(()-> m_intake.setArmPosition(-190));
+                .whenReleased(()-> m_intake.setArmPosition(-180))
+                .whenReleased(()-> m_canasta.regresar());
 
-        m_intake.setDefaultCommand(new IntakeArmCommand(m_intake,chassisDriver,subsystemsDriver));
+        chassisDriver.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT)//Outake
+                .whileHeld(()-> m_intake.agarrar(1))
+                .whileHeld(()-> m_intake.setArmPosition(-675))
+                .whenReleased(()-> m_intake.agarrar(0))
+                .whenReleased(()-> m_intake.setArmPosition(0));
 
-    /* Driver 2 */
+
+
+        //m_intake.setDefaultCommand(new IntakeArmCommand(m_intake,chassisDriver,subsystemsDriver));
+
+        chassisDriver.getGamepadButton(GamepadKeys.Button.DPAD_UP)
+                        .whileHeld(()-> m_canasta.dejar()
+                        );
+
+        chassisDriver.getGamepadButton(GamepadKeys.Button.DPAD_DOWN)
+                .whileHeld(()-> m_canasta.regresar());
+
+
+
+
+
+        /* Driver 2 */
         /* Elevator */
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.START)
                         .whenPressed(()-> m_elevator.resetTicks());
+
             /* Basket positions*/
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.Y)
                 .whenPressed(
                         new SequentialCommandGroup(
                                 new ParallelCommandGroup(
-                                        new ElevatorCommand(m_elevator,2100),
+                                        new ElevatorCommand(m_elevator,2150),
                                         new ServoLeaveCommand(m_canasta,m_elevator,1500)),
                                 new SequentialCommandGroup(
                                         new WaitCommand(500),
                                         new ServoReturnCommand(m_canasta),
-                                        new WaitCommand(500),
+                                        new WaitCommand(400),
                                         new ElevatorCommand(m_elevator,0)
                                 )
 
@@ -103,28 +130,28 @@ public class NOFieldCentricOp extends CommandOpMode {
                                 new SequentialCommandGroup(
                                         new WaitCommand(300),
                                         new ServoReturnCommand(m_canasta),
-                                        new WaitCommand(500),
+                                        new WaitCommand(400),
                                         new ElevatorCommand(m_elevator,0)
                                 )
 
                         )
                 );
-
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.A)
-                .whenPressed(()-> m_elevator.setPosition(0));
+                .whenPressed(()-> m_elevator.setPosition(0))
+                        .whenPressed(m_canasta::regresar);
 
                 /*Chamber positions */
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_UP)
-                .whileHeld(()-> m_intake.setArmPosition(-190))
+                .whileHeld(()-> m_intake.setArmPosition(-180))
                 .whileHeld(()-> m_elevator.setPosition(1350));
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_LEFT)
-                .whileHeld(()-> m_intake.setArmPosition(-190))
+                .whileHeld(()-> m_intake.setArmPosition(-180))
                 .whileHeld(()-> m_elevator.setPosition(300));
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_DOWN)
-                .whileHeld(()-> m_intake.setArmPosition(-190))
+                .whileHeld(()-> m_intake.setArmPosition(-180))
                 .whileHeld(()-> m_elevator.setPosition(900));
 
         /* Escalator */
@@ -139,7 +166,7 @@ public class NOFieldCentricOp extends CommandOpMode {
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.LEFT_STICK_BUTTON)
                         .whileHeld(()-> m_canasta.dejar())
-                .whileHeld(()->m_intake.setArmPosition(-190))
+                .whileHeld(()->m_intake.setArmPosition(-210))
                                 .whenReleased(()-> m_canasta.regresar());
 
         schedule(new RunCommand(() -> {
