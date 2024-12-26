@@ -94,8 +94,8 @@ public class FieldCentricOP extends CommandOpMode {
                 .whenPressed(
                         new SequentialCommandGroup(
                                 new ParallelCommandGroup(
-                                new ElevatorCommand(m_elevator,2100),
-                                 new ServoLeaveCommand(m_canasta,m_elevator,1500)),
+                                new ElevatorCommand(m_elevator,2150),
+                                 new ServoLeaveCommand(m_canasta,m_elevator,1500, 2100)),
                                       new SequentialCommandGroup(
                                               new ServoReturnCommand(m_canasta),
                                               new WaitCommand(500),
@@ -111,7 +111,7 @@ public class FieldCentricOP extends CommandOpMode {
                         new SequentialCommandGroup(
                                 new ParallelCommandGroup(
                                         new ElevatorCommand(m_elevator,960),
-                                        new ServoLeaveCommand(m_canasta,m_elevator,359)),
+                                        new ServoLeaveCommand(m_canasta,m_elevator,359, 900)),
                                 new SequentialCommandGroup(
                                         new WaitCommand(400),
                                         new ServoReturnCommand(m_canasta),

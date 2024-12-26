@@ -110,7 +110,7 @@ public class NOFieldCentricOp extends CommandOpMode {
                         new SequentialCommandGroup(
                                 new ParallelCommandGroup(
                                         new ElevatorCommand(m_elevator,2150),
-                                        new ServoLeaveCommand(m_canasta,m_elevator,1500)),
+                                        new ServoLeaveCommand(m_canasta,m_elevator,1500, 2100)),
                                 new SequentialCommandGroup(
                                         new WaitCommand(500),
                                         new ServoReturnCommand(m_canasta),
@@ -126,7 +126,7 @@ public class NOFieldCentricOp extends CommandOpMode {
                         new SequentialCommandGroup(
                                 new ParallelCommandGroup(
                                         new ElevatorCommand(m_elevator,960),
-                                        new ServoLeaveCommand(m_canasta,m_elevator,359)),
+                                        new ServoLeaveCommand(m_canasta,m_elevator,359, 900)),
                                 new SequentialCommandGroup(
                                         new WaitCommand(300),
                                         new ServoReturnCommand(m_canasta),

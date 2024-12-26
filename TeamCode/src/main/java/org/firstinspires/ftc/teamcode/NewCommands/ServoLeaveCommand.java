@@ -10,11 +10,13 @@ public class ServoLeaveCommand extends CommandBase {
     Canasta m_servo;
     ElevatorSystem m_elevator;
     int conditional = 0;
+    int ser;
 
-    public ServoLeaveCommand (Canasta m_servo, ElevatorSystem m_elevator, int limit){
+    public ServoLeaveCommand (Canasta m_servo, ElevatorSystem m_elevator, int limit, int limitPoint){
         this.m_servo = m_servo;
         this.m_elevator = m_elevator;
         conditional = limit;
+        ser = limitPoint;
 
         addRequirements(m_servo);
     }
@@ -29,6 +31,6 @@ public class ServoLeaveCommand extends CommandBase {
 
    @Override
     public boolean isFinished() {
-        return m_elevator.getElevatorPosition() > conditional+590;   //true ya terminar
+        return m_elevator.getElevatorPosition() > ser;   //true ya terminar
    }
 }
