@@ -18,11 +18,13 @@ public class MecanumDriveSubsystem extends SubsystemBase {
     private final SampleMecanumDrive drive;
     private final boolean fieldCentric;
     private boolean isInverted = true;
+    private final boolean isRedAlliance;
 
 
-    public MecanumDriveSubsystem(SampleMecanumDrive drive, boolean isFieldCentric) {
+    public MecanumDriveSubsystem(SampleMecanumDrive drive, boolean isFieldCentric, boolean isRedAlliance) {
         this.drive = drive;
         fieldCentric = isFieldCentric;
+        this.isRedAlliance = isRedAlliance;
 
     }
 
@@ -57,9 +59,16 @@ public class MecanumDriveSubsystem extends SubsystemBase {
     public void drive(double leftY, double leftX, double rightX) {
         Pose2d poseEstimate = getPoseEstimate();
 
-        Vector2d input = new Vector2d(-leftY, -leftX).rotated(
-                fieldCentric ? -poseEstimate.getHeading() : 0
-        );
+        Vector2d input;
+        if(!isRedAlliance) {
+            input = new Vector2d(-leftY, -leftX).rotated(
+                    fieldCentric ? -poseEstimate.getHeading() + 3.506 : 0
+            );
+        }else{
+            input = new Vector2d(-leftY, -leftX).rotated(
+                    fieldCentric ? -poseEstimate.getHeading() +3.14159 + 1.570795 : 0
+            );
+        }
 
         drive.setWeightedDrivePower(
                 new Pose2d(

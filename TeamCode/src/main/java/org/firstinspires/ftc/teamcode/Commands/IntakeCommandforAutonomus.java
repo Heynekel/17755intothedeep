@@ -2,26 +2,29 @@ package org.firstinspires.ftc.teamcode.Commands;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 
+import org.apache.commons.math3.analysis.function.Abs;
+import org.firstinspires.ftc.teamcode.Subsystem.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.IntakeSubsystem;
 
 public class IntakeCommandforAutonomus extends CommandBase {
-    IntakeSubsystem intake;
+
+    ArmSubsystem m_arm;
     int setPoint;
 
-    public  IntakeCommandforAutonomus(IntakeSubsystem intake, int setPoint){
-        this.intake = intake;
+    public  IntakeCommandforAutonomus( ArmSubsystem m_arm, int setPoint){
         this.setPoint = setPoint;
+        this.m_arm = m_arm;
 
-        addRequirements(intake);
+        addRequirements(m_arm);
     }
 
     @Override
     public void  execute(){
-        intake.AtSetpoint(setPoint,  1);
+        m_arm.AtSetpoint(setPoint,  1);
     }
 
     @Override
     public  boolean isFinished(){
-        return  intake.isAtSetPoint();
+        return  m_arm.isAtSetPoint();
     }
 }

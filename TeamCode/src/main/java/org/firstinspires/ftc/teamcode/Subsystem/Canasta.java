@@ -21,21 +21,21 @@ public class Canasta extends SubsystemBase {
         c2 = new SimpleServo(hardwareMap, "c2", 0, 180, AngleUnit.DEGREES);
         c2.setInverted(true);
       regresar();
+
     }
 
-
     public void dejar(){
-        c2.turnToAngle(150);
+        c2.turnToAngle(180);
         //c1.turnToAngle(35);
     }
     public void regresar(){
        // c1.turnToAngle(160);
         c2.turnToAngle(39);
-
     }
+
 public void IvansFunction(){
 
-        c2.turnToAngle(45);
+        c2.turnToAngle(49);
 
 }
     public double getPos(){

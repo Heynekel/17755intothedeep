@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class IntakeCommand extends CommandBase{
     IntakeSubsystem intake;
     double power;
-    Timing.Timer timer = new Timing.Timer(3, TimeUnit.SECONDS);
+    Timing.Timer timer = new Timing.Timer(2600, TimeUnit.MILLISECONDS);
 
     public IntakeCommand(IntakeSubsystem intake, double power) {
         this.power = power;

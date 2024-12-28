@@ -51,13 +51,6 @@ public void setPosition(int pos ){
         escalador.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 }
 
-    public void setPoint2(int position, double power) {
-        escalador.setTargetPosition(position);
-        escalador.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        escalador.setPower(power);
-///
-
-    }
     @Override
     public void periodic(){
         telemetry.addData("escalador", escalador.getCurrentPosition());
