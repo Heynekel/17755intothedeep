@@ -1,11 +1,10 @@
 package org.firstinspires.ftc.teamcode.Autonomusthings.Autonomosprobar;
 
-import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.RunCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.Autonomusthings.AutosRed;
+import org.firstinspires.ftc.teamcode.Autonomusthings.Autos.AutosRed;
 import org.firstinspires.ftc.teamcode.Subsystem.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.Canasta;
 import org.firstinspires.ftc.teamcode.Subsystem.ElevatorSystem;

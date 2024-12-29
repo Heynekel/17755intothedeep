@@ -24,22 +24,16 @@ public class ArmSubsystem extends SubsystemBase {
 
     }
 
-
     public  void resetintakearmtiks(){
         intakearm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     public void setArmPosition(int pos){
-        intakearm.setPower(1);
+        intakearm.setPower(0.5);
         intakearm.setTargetPosition(pos);
         intakearm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
-    public void setPoint(int position, double power, double armPower) {
-        intakearm.setTargetPosition(position);
-        intakearm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        intakearm.setPower(armPower);
 
-    }
 
     public int getPosition(){
         return intakearm.getCurrentPosition();

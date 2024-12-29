@@ -43,10 +43,14 @@ public class ElevatorSystem extends SubsystemBase {
         brazoizq.setVelocity(6000);
         brazoizq.setTargetPosition(pos);
         brazoizq.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
         brazoder.setVelocity(6000);
         brazoder.setTargetPosition(pos);
         brazoder.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
+    public  void velocidad(int vel){
+        brazoder.setVelocity(vel);
+        brazoizq.setVelocity(vel);
     }
 
     @Override

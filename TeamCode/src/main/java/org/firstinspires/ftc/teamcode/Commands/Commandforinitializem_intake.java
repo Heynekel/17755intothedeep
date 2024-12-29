@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class Commandforinitializem_intake extends CommandBase {
     IntakeSubsystem intake;
     double power;
-    Timing.Timer timer = new Timing.Timer(1, TimeUnit.SECONDS);
+    Timing.Timer timer = new Timing.Timer(900, TimeUnit.MILLISECONDS);
 
     public Commandforinitializem_intake(IntakeSubsystem intake, double power) {
         this.power = power;

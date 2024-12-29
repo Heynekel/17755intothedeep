@@ -12,6 +12,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Commands.MecanumDriveCommand;
 import org.firstinspires.ftc.teamcode.NewCommands.ElevatorCommand;
+import org.firstinspires.ftc.teamcode.NewCommands.LeaveCommandintake;
 import org.firstinspires.ftc.teamcode.NewCommands.ServoLeaveCommand;
 import org.firstinspires.ftc.teamcode.NewCommands.ServoReturnCommand;
 import org.firstinspires.ftc.teamcode.Subsystem.ArmSubsystem;
@@ -57,7 +58,7 @@ public class FieldCentricTeleOp extends CommandOpMode {
                         chassisDriver::getRightX
         ));
 
-        chassisDriver.getGamepadButton(
+       /* chassisDriver.getGamepadButton(
                 GamepadKeys.Button.RIGHT_STICK_BUTTON)
                 .whenPressed(
                         new InstantCommand(
@@ -72,7 +73,7 @@ public class FieldCentricTeleOp extends CommandOpMode {
                 .whileHeld(()-> m_arm.setArmPosition(-675))
 
                 .whenReleased(()-> m_intake.setPower(0))
-                .whenReleased(()-> m_arm.setArmPosition(0));//Intake
+                .whenReleased(()-> m_arm.setArmPosition(-1));//Intake
 
         chassisDriver.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)//Outake
                 .whileHeld(()-> m_intake.agarrar(1))
@@ -100,6 +101,8 @@ public class FieldCentricTeleOp extends CommandOpMode {
         chassisDriver.getGamepadButton(GamepadKeys.Button.DPAD_DOWN)
                 .whileHeld(()-> m_canasta.regresar());
 
+
+
         /* Driver 2 */
         /* Elevator */
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.START)
@@ -112,9 +115,9 @@ public class FieldCentricTeleOp extends CommandOpMode {
                                         new ElevatorCommand(m_elevator,2100),
                                         new ServoLeaveCommand(m_canasta,m_elevator,1500, 2000)),
                                 new SequentialCommandGroup(
-                                        new WaitCommand(750),
+                                        new WaitCommand(650),
                                         new ServoReturnCommand(m_canasta),
-                                        new WaitCommand(600),
+                                        new WaitCommand(500),
                                         new ElevatorCommand(m_elevator,0)
                                 )
                         )
@@ -126,9 +129,9 @@ public class FieldCentricTeleOp extends CommandOpMode {
                                         new ElevatorCommand(m_elevator,960),
                                         new ServoLeaveCommand(m_canasta,m_elevator,359, 900)),
                                 new SequentialCommandGroup(
-                                        new WaitCommand(400),
+                                        new WaitCommand(300),
                                         new ServoReturnCommand(m_canasta),
-                                        new WaitCommand(500),
+                                        new WaitCommand(400),
                                         new ElevatorCommand(m_elevator,0)
                                 )
                         )
@@ -141,7 +144,7 @@ public class FieldCentricTeleOp extends CommandOpMode {
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_UP)
                 .whileHeld(()-> m_arm.setArmPosition(-180))
-                .whileHeld(()-> m_elevator.setPosition(1350));
+                .whileHeld(()-> m_elevator.setPosition(1400));
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT)
                 .whileHeld(()-> m_arm.setArmPosition(-180))
@@ -163,9 +166,16 @@ public class FieldCentricTeleOp extends CommandOpMode {
         /* Basket manual */
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.LEFT_STICK_BUTTON)
-                        .whileHeld(()-> m_canasta.dejar())
+                .whileHeld(()-> m_canasta.dejar())
                 .whileHeld(()->m_arm.setArmPosition(-210))
-                                .whenReleased(()-> m_canasta.regresar());
+                .whenReleased(()-> m_canasta.regresar());
+
+
+        /*Outake*/
+        m_intake.setDefaultCommand(new LeaveCommandintake(m_intake, m_arm, subsystemsDriver));
+
+
+
 
         schedule(new RunCommand(() -> {
             m_drive.update();

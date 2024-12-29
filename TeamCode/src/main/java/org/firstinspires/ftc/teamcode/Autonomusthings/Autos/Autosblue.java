@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Autonomusthings;
+package org.firstinspires.ftc.teamcode.Autonomusthings.Autos;
 
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
