@@ -5,7 +5,9 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.RunCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.firstinspires.ftc.teamcode.Autonomusthings.AutosChambers;
 import org.firstinspires.ftc.teamcode.Autonomusthings.AutosRed;
+import org.firstinspires.ftc.teamcode.Autonomusthings.Trejectories.Chambers;
 import org.firstinspires.ftc.teamcode.Subsystem.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.Canasta;
 import org.firstinspires.ftc.teamcode.Subsystem.ElevatorSystem;
@@ -22,6 +24,7 @@ SampleMecanumDrive sampleMecanumDrive;
 ElevatorSystem elevatorSystem;
 Canasta canasta;
 ArmSubsystem m_arm;
+AutosChambers chambers;
 
     @Override
     public void initialize() {
@@ -31,6 +34,7 @@ ArmSubsystem m_arm;
         canasta = new Canasta(hardwareMap, telemetry);
          m_arm = new ArmSubsystem(hardwareMap, telemetry);
         elevatorSystem = new ElevatorSystem(hardwareMap, telemetry);
+        chambers = new AutosChambers(mecanumDriveSubsystem, elevatorSystem, m_arm);
 
         schedule(new RunCommand(() -> {
             mecanumDriveSubsystem.update();
@@ -40,7 +44,7 @@ ArmSubsystem m_arm;
             telemetry.update();
         }));
         autosRed = new AutosRed(mecanumDriveSubsystem, intake, m_arm, elevatorSystem, canasta);/*Siempre al final*/
-        schedule(autosRed);
+        schedule(chambers);
 
 
 
