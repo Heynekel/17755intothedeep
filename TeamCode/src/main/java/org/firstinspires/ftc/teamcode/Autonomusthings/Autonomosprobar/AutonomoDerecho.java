@@ -14,11 +14,10 @@ import org.firstinspires.ftc.teamcode.Subsystem.MecanumDriveSubsystem;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 @Autonomous
-public class AutoRedDer extends CommandOpMode {
+public class AutonomoDerecho extends CommandOpMode {
 
     IntakeSubsystem intake;
     MecanumDriveSubsystem mecanumDriveSubsystem;
-    AutosRed autosRed;
     SampleMecanumDrive sampleMecanumDrive;
     ElevatorSystem elevatorSystem;
     Canasta canasta;
@@ -40,7 +39,7 @@ public class AutoRedDer extends CommandOpMode {
             telemetry.addData("Position", mecanumDriveSubsystem.getPoseEstimate());
             telemetry.update();
         }));
-        autosRed = new AutosRed(mecanumDriveSubsystem, intake, m_arm, elevatorSystem, canasta);/*Siempre al final*/
+        chambers = new ChambersAuto(m_arm, mecanumDriveSubsystem, elevatorSystem);/*Siempre al final*/
         schedule(chambers);
 
 

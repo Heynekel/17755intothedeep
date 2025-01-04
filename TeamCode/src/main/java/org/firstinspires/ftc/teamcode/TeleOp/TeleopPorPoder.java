@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.InstantCommand;
+import com.arcrobotics.ftclib.command.RunCommand;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -45,7 +46,7 @@ public class TeleopPorPoder extends CommandOpMode {
         m_arm = new ArmSubsystem(hardwareMap, telemetry);
 
 /*Escalador*/
-        subsystemsDriver.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
+    subsystemsDriver.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
                 .whileHeld(()-> m_escalador.setVelocity(-6000))
                 .whenReleased(()-> m_escalador.setVelocity(0));
 
@@ -93,6 +94,15 @@ public class TeleopPorPoder extends CommandOpMode {
                         () -> -chassisDriver.getLeftY(),
                         chassisDriver::getLeftX,
                         chassisDriver::getRightX));
+
+        schedule(new RunCommand(() -> {
+            m_drive.update();
+            m_drive.updatePoseEstimate();
+            telemetry.addData("Heading", m_drive.getPoseEstimate().getHeading());
+            telemetry.addData("Position", m_drive.getPoseEstimate());
+            telemetry.update();
+        }));
+    }
     }
 
-}
+

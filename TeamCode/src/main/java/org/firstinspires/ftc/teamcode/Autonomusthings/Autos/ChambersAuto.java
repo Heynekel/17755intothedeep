@@ -18,12 +18,13 @@ public class ChambersAuto extends SequentialCommandGroup {
 
     public ChambersAuto(ArmSubsystem m_arm, MecanumDriveSubsystem m_drive, ElevatorSystem m_elevatorSystem){
         addCommands(new ParallelCommandGroup(
+                new IntakeCommandforAutonomus( m_arm, -180),
                         new TrajectoryFollowerCommand(m_drive, chambersRedTrajectories.chamber1(m_drive.getDrive())),
                         new ElevatorCommand(m_elevatorSystem, 1320)
                 ),
                 new WaitCommand(500),
                 new ParallelCommandGroup(
-                        new ElevatorCommand(m_elevatorSystem, 1000),
+                        new ElevatorCommand(m_elevatorSystem, 1100),
                         new IntakeCommandforAutonomus( m_arm, -180)
                 ),
                 new WaitCommand(500),
@@ -43,18 +44,22 @@ public class ChambersAuto extends SequentialCommandGroup {
                         new TrajectoryFollowerCommand(m_drive, chambersRedTrajectories.chamber7(m_drive.getDrive())),
                         new ElevatorCommand(m_elevatorSystem, 1320)
                 ),
-                new WaitCommand(500),
-                new ParallelCommandGroup(
-                        new ElevatorCommand(m_elevatorSystem, 1000)
-                ),
-                new WaitCommand(500),
+                new WaitCommand(750),
+
+                        new ElevatorCommand(m_elevatorSystem, 1000),
+
+                new WaitCommand(250),
                 new ParallelCommandGroup(
                         new ElevatorCommand(m_elevatorSystem, 0),
-                        new TrajectoryFollowerCommand(m_drive, chambersRedTrajectories.chamber2(m_drive.getDrive()))
-                ),
-        new IntakeCommandforAutonomus( m_arm, 0)
+                        new TrajectoryFollowerCommand(m_drive, chambersRedTrajectories.chamber8(m_drive.getDrive())),
+                             new IntakeCommandforAutonomus( m_arm, -80)
 
-        );
+                ),
+                new IntakeCommandforAutonomus( m_arm, 0)
+
+                );
+
+
 
     }
 }

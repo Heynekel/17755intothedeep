@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Subsystem;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -18,6 +19,7 @@ public class IntakeSubsystem extends SubsystemBase {
             this.telemetry = telemetry;
 
             ser1 = hardwareMap.get(CRServo.class, "ser1");
+            ser1.setDirection(DcMotorSimple.Direction.REVERSE);
         }
         public  void agarrar (double power){
             ser1.setPower(power);

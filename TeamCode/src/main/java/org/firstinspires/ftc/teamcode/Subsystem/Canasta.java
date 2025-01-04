@@ -35,9 +35,10 @@ public class Canasta extends SubsystemBase {
 
 public void IvansFunction(){
 
-        c2.turnToAngle(49);
+        c2.turnToAngle(46);
 
 }
+
     public double getPos(){
          return c2.getAngle();
     }

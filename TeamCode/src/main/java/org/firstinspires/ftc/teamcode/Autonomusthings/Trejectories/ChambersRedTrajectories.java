@@ -15,7 +15,6 @@ public class ChambersRedTrajectories {
                 .build();
 //va para dejar en chamber
     }
-
     public Trajectory chamber2(SampleMecanumDrive drive){
         return drive.trajectoryBuilder(new Pose2d(-11.18, -11.22, Math.toRadians(270)))
                 .lineToLinearHeading(new Pose2d(50.2, -40.89, Math.toRadians(270)))
@@ -23,7 +22,7 @@ public class ChambersRedTrajectories {
     }
 
     public Trajectory chamber3(SampleMecanumDrive drive){
-        return drive.trajectoryBuilder(new Pose2d(50.2, -40.89, Math.toRadians(80)))
+        return drive.trajectoryBuilder(new Pose2d(50.2, -40.89, Math.toRadians(90)))
                 .forward(1)
                 .build();
     }
@@ -48,9 +47,14 @@ public class ChambersRedTrajectories {
 
     public Trajectory chamber7(SampleMecanumDrive drive){
         return drive.trajectoryBuilder(new Pose2d(50.2, -40.89, Math.toRadians(270)))
-                .lineToLinearHeading(new Pose2d(-5.18, -20.22, Math.toRadians(270)))
+                .lineToLinearHeading(new Pose2d(-35, -15, Math.toRadians(270)))
                 .build();
     }
+
+    public Trajectory chamber8(SampleMecanumDrive drive){
+        return  drive.trajectoryBuilder(new Pose2d(-35, -12.5, Math.toRadians(270)))
+                .lineToLinearHeading(new Pose2d(58, -65.89, Math.toRadians(270)))
+                .build();    }
 
 
 }

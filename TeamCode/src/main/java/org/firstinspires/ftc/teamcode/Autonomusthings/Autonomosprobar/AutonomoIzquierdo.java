@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.Subsystem.MecanumDriveSubsystem;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 @Autonomous
-public class AutoRedIzq extends CommandOpMode {
+public class AutonomoIzquierdo extends CommandOpMode {
 IntakeSubsystem intake;
 MecanumDriveSubsystem mecanumDriveSubsystem;
 AutosRed autosRed;

@@ -12,19 +12,18 @@ public class RedTrejectories {
         drive.setPoseEstimate(firstpose);
         return drive.trajectoryBuilder(firstpose)
                // .back(61)
-                 .lineToLinearHeading(new Pose2d(2.5, -7, Math.toRadians(270)))
+                 .lineToLinearHeading(new Pose2d(1.7, -12, Math.toRadians(270)))
                 .build();
 
 
-//va para dejar en chamberr
-
+//va para dejar en chamber
 
     }
 
 
     public  Trajectory rojoizq3(SampleMecanumDrive drive){
         return drive.trajectoryBuilder(new Pose2d(3, -17, Math.toRadians(270)))
-                 .lineToConstantHeading(new Vector2d(-53.4, -39))//48
+                 .lineToConstantHeading(new Vector2d(-48,-39))//48
                 .build();
 
 
@@ -33,21 +32,21 @@ public class RedTrejectories {
     }
 
     public  Trajectory girar(SampleMecanumDrive drive){
-        return   drive.trajectoryBuilder(new Pose2d(-53.4, -39, Math.toRadians(130)))
+        return   drive.trajectoryBuilder(new Pose2d(-48, -39, Math.toRadians(140)))
                 .forward(0.001)
                 .build();
     }
 
     public Trajectory rojoizq4 (SampleMecanumDrive drive) {
-        return     drive.trajectoryBuilder(new Pose2d(-53.4,-39, Math.toRadians(130)))
+        return     drive.trajectoryBuilder(new Pose2d(-48,-39, Math.toRadians(140)))
                 .forward(30)
                 .build();
 
     }
 
     public  Trajectory rojoizq5(SampleMecanumDrive drive){
-        return drive.trajectoryBuilder(new Pose2d(-58, -33, Math.toRadians(130)))//90
-                .lineToLinearHeading(new Pose2d(-118, -61.25, Math.toRadians(50)))
+        return drive.trajectoryBuilder(new Pose2d(-58, -33, Math.toRadians(140)))//90
+                .lineToLinearHeading(new Pose2d(-104, -58, Math.toRadians(50)))
                 .build();
 
 
@@ -106,8 +105,8 @@ public class RedTrejectories {
 
     }
     public Trajectory rojoizq12(SampleMecanumDrive drive){
-        return drive.trajectoryBuilder(new Pose2d(-58.64, -58.20, Math.toRadians(90.00)))
-                .splineTo(new Vector2d(-22.53, -12.26), Math.toRadians(0.00))
+        return drive.trajectoryBuilder(new Pose2d(-58.64, -58.20, Math.toRadians(50)))
+                .splineTo(new Vector2d(-57, -6), Math.toRadians(270))
                 .build();
 
     }
