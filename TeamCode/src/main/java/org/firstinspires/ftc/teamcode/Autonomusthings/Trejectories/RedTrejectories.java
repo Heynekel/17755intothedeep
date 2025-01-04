@@ -42,7 +42,7 @@ public class RedTrejectories {
                 .forward(30)
                 .build();
 
-    }
+    }//
 
     public  Trajectory rojoizq5(SampleMecanumDrive drive){
         return drive.trajectoryBuilder(new Pose2d(-58, -33, Math.toRadians(140)))//90
