@@ -56,6 +56,11 @@ public class MecanumDriveSubsystem extends SubsystemBase {
         drive.updatePoseEstimate();
     }
 
+    public boolean isOverCurrent(){
+
+        return drive.isOverCurrent();
+
+    }
     public void drive(double leftY, double leftX, double rightX) {
         Pose2d poseEstimate = getPoseEstimate();
 

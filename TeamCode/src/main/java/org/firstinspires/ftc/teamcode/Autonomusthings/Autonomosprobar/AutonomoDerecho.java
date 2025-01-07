@@ -4,8 +4,7 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.RunCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.Autonomusthings.Autos.AutosRed;
-import org.firstinspires.ftc.teamcode.Autonomusthings.Autos.ChambersAuto;
+import org.firstinspires.ftc.teamcode.Autonomusthings.Autos.Autochamberderecho;
 import org.firstinspires.ftc.teamcode.Subsystem.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.Canasta;
 import org.firstinspires.ftc.teamcode.Subsystem.ElevatorSystem;
@@ -22,7 +21,7 @@ public class AutonomoDerecho extends CommandOpMode {
     ElevatorSystem elevatorSystem;
     Canasta canasta;
     ArmSubsystem m_arm;
-    ChambersAuto chambers;
+    Autochamberderecho chambers;
 
     @Override
     public void initialize() {
@@ -39,7 +38,7 @@ public class AutonomoDerecho extends CommandOpMode {
             telemetry.addData("Position", mecanumDriveSubsystem.getPoseEstimate());
             telemetry.update();
         }));
-        chambers = new ChambersAuto(m_arm, mecanumDriveSubsystem, elevatorSystem);/*Siempre al final*/
+        chambers = new Autochamberderecho(m_arm, mecanumDriveSubsystem, elevatorSystem);/*Siempre al final*/
         schedule(chambers);
 
 

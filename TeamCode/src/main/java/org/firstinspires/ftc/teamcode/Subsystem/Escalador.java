@@ -3,9 +3,11 @@ package org.firstinspires.ftc.teamcode.Subsystem;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 
 public class Escalador extends SubsystemBase {
 
@@ -22,6 +24,9 @@ public class Escalador extends SubsystemBase {
         escalador = hardwareMap.get(DcMotorEx.class, " escalador");
         escalador.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         escalador.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        escalador.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        escalador.setCurrentAlert(4000, CurrentUnit.MILLIAMPS);
 
     }
 
@@ -54,6 +59,9 @@ public void setPosition(int pos ){
     @Override
     public void periodic(){
         telemetry.addData("escalador", escalador.getCurrentPosition());
+        telemetry.addData("Voltage escalador motor v ", escalador.getCurrent(CurrentUnit.MILLIAMPS));
+        //telemetry.addData("Escalador voltage alert", escalador.isOverCurrent());
+
 
     }
 }

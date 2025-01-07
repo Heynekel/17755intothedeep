@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 
 public class ArmSubsystem extends SubsystemBase {
     HardwareMap hardwareMap;
@@ -22,6 +23,8 @@ public class ArmSubsystem extends SubsystemBase {
 
         intakearm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        intakearm.setCurrentAlert(4000, CurrentUnit.MILLIAMPS);
+
     }
 
     public  void resetintakearmtiks(){
@@ -29,7 +32,7 @@ public class ArmSubsystem extends SubsystemBase {
     }
 
     public void setArmPosition(int pos){
-        intakearm.setPower(0.5);
+        intakearm.setPower(0.6);
         intakearm.setTargetPosition(pos);
         intakearm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
@@ -54,5 +57,8 @@ public class ArmSubsystem extends SubsystemBase {
     @Override
     public  void periodic() {
         telemetry.addData("armintake", intakearm.getCurrentPosition());
+        telemetry.addData("Voltage arm  motor", intakearm.getCurrent(CurrentUnit.MILLIAMPS));
+       // telemetry.addData("intakearm v", intakearm.isOverCurrent());
+
     }
 }

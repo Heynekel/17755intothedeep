@@ -41,6 +41,7 @@ import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceRunner;
 import org.firstinspires.ftc.teamcode.util.LynxModuleUtil;
@@ -71,7 +72,7 @@ public class SampleMecanumDrive extends MecanumDrive {
 
     private TrajectoryFollower follower;
 
-    private DcMotorEx leftFront, leftRear, rightRear, rightFront;
+    public DcMotorEx leftFront, leftRear, rightRear, rightFront;
     private List<DcMotorEx> motors;
 
     private IMU imu;
@@ -105,6 +106,15 @@ public class SampleMecanumDrive extends MecanumDrive {
         leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
         rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
+
+        rightRear.setCurrentAlert(4000, CurrentUnit.MILLIAMPS);
+        leftFront.setCurrentAlert(4000, CurrentUnit.MILLIAMPS);
+        leftRear.setCurrentAlert(4000, CurrentUnit.MILLIAMPS);
+        rightFront.setCurrentAlert(4000, CurrentUnit.MILLIAMPS);
+
+        /*Sensor  voltage*/
+       // setCurrentAlert(4000);
+
 
 
         motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
@@ -326,6 +336,20 @@ public class SampleMecanumDrive extends MecanumDrive {
 
     public static TrajectoryAccelerationConstraint getAccelerationConstraint(double maxAccel) {
         return new ProfileAccelerationConstraint(maxAccel);
+    }
+
+    public boolean isOverCurrent(){
+            boolean voltagemotor = false;
+        for (DcMotorEx motor : motors){
+           voltagemotor = motor.isOverCurrent();
+        }
+        return voltagemotor;
+    }
+
+    public void setCurrentAlert(int current){
+        for (DcMotorEx motor : motors){
+            motor.setCurrentAlert(current, CurrentUnit.MILLIAMPS);
+        }
     }
 
 

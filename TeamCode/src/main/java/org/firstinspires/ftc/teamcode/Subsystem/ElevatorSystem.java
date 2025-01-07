@@ -1,11 +1,18 @@
 package org.firstinspires.ftc.teamcode.Subsystem;
+import static java.time.temporal.TemporalAdjusters.next;
+
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.VoltageSensor;
+
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 
 public class ElevatorSystem extends SubsystemBase {
+
     HardwareMap hardwareMap;
     Telemetry telemetry;
     DcMotorEx brazoizq, brazoder;
@@ -16,7 +23,13 @@ public class ElevatorSystem extends SubsystemBase {
         brazoizq = hardwareMap.get(DcMotorEx.class, " brazoizq");
         brazoder = hardwareMap.get(DcMotorEx.class, " brazoder");
 
-        brazoizq.setDirection(DcMotorEx.Direction.REVERSE);
+        brazoizq.setCurrentAlert(4000, CurrentUnit.MILLIAMPS);
+        brazoder.setCurrentAlert(4000, CurrentUnit.MILLIAMPS);
+
+
+
+        brazoizq.setDirection(DcMotorEx.Direction.FORWARD);
+        brazoder.setDirection(DcMotorSimple.Direction.REVERSE);
 
         brazoizq.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         brazoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -30,6 +43,8 @@ public class ElevatorSystem extends SubsystemBase {
         brazoizq.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
+
+
     public boolean isAtSetPoint() {
         boolean isAtSetPoint = brazoizq.getCurrentPosition() - brazoizq.getTargetPosition() < brazoizq.getTargetPositionTolerance();
         return isAtSetPoint;
@@ -40,10 +55,10 @@ public class ElevatorSystem extends SubsystemBase {
     }
 
     public void setPosition(int pos){
-        brazoizq.setVelocity(6000);
+        brazoizq.setPower(1);
         brazoizq.setTargetPosition(pos);
         brazoizq.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        brazoder.setVelocity(6000);
+        brazoder.setPower(1);
         brazoder.setTargetPosition(pos);
         brazoder.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
@@ -53,9 +68,19 @@ public class ElevatorSystem extends SubsystemBase {
         brazoizq.setVelocity(vel);
     }
 
+    public void setPower(double power){
+        brazoder.setPower(power);
+        brazoizq.setPower(power);
+    }
+
     @Override
     public  void periodic(){
         telemetry.addData("Elevator right position", brazoder.getCurrentPosition());
         telemetry.addData("Elevator left position", brazoizq.getCurrentPosition());
+        telemetry.addData("Voltage left elevator motor", brazoizq.getCurrent(CurrentUnit.MILLIAMPS));
+        telemetry.addData("Voltage right elevator motor", brazoder.getCurrent(CurrentUnit.MILLIAMPS));
+
+        //telemetry.addData("Elevator left v", brazoizq.isOverCurrent());
+        //telemetry.addData("Elevator right v", brazoder.isOverCurrent());
     }
 }

@@ -25,19 +25,18 @@ public class Canasta extends SubsystemBase {
     }
 
     public void dejar(){
-        c2.turnToAngle(180);
+        c2.turnToAngle(125);
         //c1.turnToAngle(35);
     }
     public void regresar(){
        // c1.turnToAngle(160);
-        c2.turnToAngle(39);
+        c2.turnToAngle(10);
     }
 
 public void IvansFunction(){
-
-        c2.turnToAngle(46);
-
+        c2.turnToAngle(17);
 }
+
 
     public double getPos(){
          return c2.getAngle();
@@ -45,6 +44,6 @@ public void IvansFunction(){
 
     @Override
     public  void  periodic(){
-telemetry.addData("Servo 2 position", getPos());
+telemetry.addData("canasta", getPos());
     }
 }

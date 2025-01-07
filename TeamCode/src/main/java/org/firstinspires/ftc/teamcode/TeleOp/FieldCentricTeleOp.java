@@ -10,6 +10,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCommandforAutonomus;
 import org.firstinspires.ftc.teamcode.Commands.MecanumDriveCommand;
 import org.firstinspires.ftc.teamcode.NewCommands.ElevatorCommand;
@@ -79,7 +80,7 @@ public class FieldCentricTeleOp extends CommandOpMode {
   /* Intake*/
         chassisDriver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER)
                 .whileHeld(()-> m_intake.setPower(-1))
-                .whileHeld(()-> m_arm.setArmPosition(-675))
+                .whileHeld(()-> m_arm.setArmPosition(-700))
 
                 .whenReleased(()-> m_intake.setPower(0))
                 .whenReleased(()-> m_arm.setArmPosition(3));//Intake
@@ -89,8 +90,10 @@ public class FieldCentricTeleOp extends CommandOpMode {
                 .whileHeld(()-> m_canasta.IvansFunction())
 
                 .whenReleased(()-> m_intake.agarrar(0))
-                .whenReleased(()-> m_arm.setArmPosition(-180))
+                .whenReleased(()-> m_arm.setArmPosition(-140))
                 .whenReleased(()-> m_canasta.regresar());
+
+
 
 
         chassisDriver.getGamepadButton(GamepadKeys.Button.A)//Outake
@@ -103,7 +106,7 @@ public class FieldCentricTeleOp extends CommandOpMode {
 
 
         chassisDriver.getGamepadButton(GamepadKeys.Button.B)
-                        .whenPressed(()-> m_arm.setArmPosition(-300));
+                        .whenPressed(()-> m_arm.setArmPosition(-450));
 
 
         //m_intake.setDefaultCommand(new IntakeArmCommand(m_intake,chassisDriver,subsystemsDriver));
@@ -121,10 +124,11 @@ public class FieldCentricTeleOp extends CommandOpMode {
                 .whenPressed(
                         new SequentialCommandGroup(
                                 new ParallelCommandGroup(
-                                        new ElevatorCommand(m_elevator,2000),
-                                        new ServoLeaveCommand(m_canasta,m_elevator,1500, 1900)),
+                                        new ElevatorCommand(m_elevator,2500),
+                                        new WaitCommand(200),
+                                        new ServoLeaveCommand(m_canasta,m_elevator,1500, 2400)),
                                 new SequentialCommandGroup(
-                                        new WaitCommand(600),
+                                        new WaitCommand(400),
                                         new ServoReturnCommand(m_canasta),
                                         new WaitCommand(450),
                                         new ElevatorCommand(m_elevator,0)
@@ -135,8 +139,10 @@ public class FieldCentricTeleOp extends CommandOpMode {
                 .whenPressed(
                         new SequentialCommandGroup(
                                 new ParallelCommandGroup(
-                                        new ElevatorCommand(m_elevator,960),
-                                        new ServoLeaveCommand(m_canasta,m_elevator,359, 900)),
+                                        new ElevatorCommand(m_elevator,1160),
+                                        new WaitCommand(400),
+
+                                        new ServoLeaveCommand(m_canasta,m_elevator,359, 1100)),
                                 new SequentialCommandGroup(
                                         new WaitCommand(300),
                                         new ServoReturnCommand(m_canasta),
@@ -153,20 +159,20 @@ public class FieldCentricTeleOp extends CommandOpMode {
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_UP)
                 .whileHeld(()-> m_arm.setArmPosition(-180))
-                .whileHeld(()-> m_elevator.setPosition(1400));
+                .whileHeld(()-> m_elevator.setPosition(1575));
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT)
                 .whileHeld(()-> m_arm.setArmPosition(-180))
-                .whileHeld(()-> m_elevator.setPosition(300));
+                .whileHeld(()-> m_elevator.setPosition(500));
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_DOWN)
                 .whileHeld(()-> m_arm.setArmPosition(-180))
-                .whileHeld(()-> m_elevator.setPosition(900));
+                .whileHeld(()-> m_elevator.setPosition(950));
 
         /* Escalator */
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER)
                 .whenPressed(()-> m_arm.setArmPosition(-675))
-                .whenPressed(()-> m_escalador.setPosition(4900));
+                .whenPressed(()-> m_escalador.setPosition(4500));
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
                 .whenPressed(()-> m_escalador.setPosition(0));
@@ -178,8 +184,15 @@ public class FieldCentricTeleOp extends CommandOpMode {
         schedule(new RunCommand(() -> {
             m_drive.update();
             m_drive.updatePoseEstimate();
+
+            telemetry.addData("leftFront Voltage", sampleMecanumDrive.leftFront.getCurrent(CurrentUnit.MILLIAMPS));
+            telemetry.addData("rightFront Voltage", sampleMecanumDrive.rightFront.getCurrent(CurrentUnit.MILLIAMPS));
+            telemetry.addData("leftRear Voltage", sampleMecanumDrive.leftRear.getCurrent(CurrentUnit.MILLIAMPS));
+            telemetry.addData("rightRear Voltage", sampleMecanumDrive.rightRear.getCurrent(CurrentUnit.MILLIAMPS));
+
             telemetry.addData("Heading", m_drive.getPoseEstimate().getHeading());
             telemetry.addData("Position", m_drive.getPoseEstimate());
+           // telemetry.addData("Voltage", m_drive.isOverCurrent());
             telemetry.update();
         }));
     }
