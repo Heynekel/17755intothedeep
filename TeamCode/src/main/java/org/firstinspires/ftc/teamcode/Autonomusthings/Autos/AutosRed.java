@@ -28,7 +28,7 @@ public class AutosRed extends SequentialCommandGroup {
     public AutosRed(MecanumDriveSubsystem m_drive, IntakeSubsystem m_intake, ArmSubsystem m_arm, ElevatorSystem m_elevatorSystem, Canasta m_canasta) {
         addCommands(
                         new ParallelCommandGroup(
-                                new IntakeCommandforAutonomus( m_arm, -100),
+                                new IntakeCommandforAutonomus( m_arm, -120),
                 new TrajectoryFollowerCommand(m_drive, redTrejectories.reojoiz1(m_drive.getDrive())),
                 new ElevatorCommand(m_elevatorSystem, 1575),
                  new Commandforinitializem_intake(m_intake, 1)
@@ -37,16 +37,17 @@ public class AutosRed extends SequentialCommandGroup {
 new WaitCommand(300),
 new ParallelCommandGroup(
         new ElevatorCommand(m_elevatorSystem, 750),
-        new IntakeCommandforAutonomus( m_arm, -180)
+        new IntakeCommandforAutonomus( m_arm, -140)
 ),
                 new WaitCommand(500),
                 new ParallelCommandGroup(
                         new ElevatorCommand(m_elevatorSystem, 0),
                         new TrajectoryFollowerCommand(m_drive, redTrejectories.rojoizq3(m_drive.getDrive()))
                 ),
+                new IntakeCommandforAutonomus( m_arm, 0),
                 new ParallelCommandGroup(
                         new TrajectoryFollowerCommand(m_drive, redTrejectories.girar(m_drive.getDrive())),
-                        new IntakeCommandforAutonomus( m_arm, -710)
+                        new IntakeCommandforAutonomus( m_arm, -690)
                 ),
 
 new ParallelCommandGroup(
@@ -62,7 +63,7 @@ new ParallelCommandGroup(
                 new ServoReturnCommand(m_canasta),
                 new WaitCommand(100),
                 new ParallelCommandGroup(
-                        new IntakeCommandforAutonomus( m_arm, -180),
+                        new IntakeCommandforAutonomus( m_arm, -120),
                         new ElevatorCommand(m_elevatorSystem, 2500),
                         new TrajectoryFollowerCommand(m_drive, redTrejectories.rojoizq5(m_drive.getDrive()))
                 ),

@@ -18,14 +18,14 @@ public class Autochamberderecho extends SequentialCommandGroup {
 
     public Autochamberderecho(ArmSubsystem m_arm, MecanumDriveSubsystem m_drive, ElevatorSystem m_elevatorSystem){
         addCommands(new ParallelCommandGroup(
-                new IntakeCommandforAutonomus( m_arm, -80),
+                new IntakeCommandforAutonomus( m_arm, -100),
                         new TrajectoryFollowerCommand(m_drive, chambersRedTrajectories.chamber1(m_drive.getDrive())),
                         new ElevatorCommand(m_elevatorSystem, 1575)
                 ),
                 new WaitCommand(600),
                 new ParallelCommandGroup(
                         new ElevatorCommand(m_elevatorSystem, 750),
-                        new IntakeCommandforAutonomus( m_arm, -180)
+                        new IntakeCommandforAutonomus( m_arm, -100)
                 ),
                 new WaitCommand(600),
                 new ParallelCommandGroup(
@@ -35,10 +35,9 @@ public class Autochamberderecho extends SequentialCommandGroup {
                 new TrajectoryFollowerCommand(m_drive, chambersRedTrajectories.chamber3(m_drive.getDrive())),
                 new WaitCommand(200),
                 new TrajectoryFollowerCommand(m_drive, chambersRedTrajectories.chamber4(m_drive.getDrive())),
-                new ParallelCommandGroup(
-                        new TrajectoryFollowerCommand(m_drive, chambersRedTrajectories.chamber5(m_drive.getDrive())),
-                       new ElevatorCommand(m_elevatorSystem, 900)
-                ),
+                new ElevatorCommand(m_elevatorSystem, 900),
+        new WaitCommand(500),
+        new TrajectoryFollowerCommand(m_drive, chambersRedTrajectories.chamber5(m_drive.getDrive())),
                 new TrajectoryFollowerCommand(m_drive, chambersRedTrajectories.chamber6(m_drive.getDrive())),
                 new ParallelCommandGroup(
                         new TrajectoryFollowerCommand(m_drive, chambersRedTrajectories.chamber7(m_drive.getDrive())),
