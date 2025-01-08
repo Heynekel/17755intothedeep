@@ -28,8 +28,8 @@ public class ElevatorSystem extends SubsystemBase {
 
 
 
-        brazoizq.setDirection(DcMotorEx.Direction.FORWARD);
-        brazoder.setDirection(DcMotorSimple.Direction.REVERSE);
+        brazoizq.setDirection(DcMotorEx.Direction.REVERSE);//FORDWARD
+        brazoder.setDirection(DcMotorSimple.Direction.FORWARD);//REVERSE
 
         brazoizq.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         brazoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
