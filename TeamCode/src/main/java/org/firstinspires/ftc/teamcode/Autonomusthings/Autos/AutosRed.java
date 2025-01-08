@@ -36,7 +36,7 @@ public class AutosRed extends SequentialCommandGroup {
 
 new WaitCommand(300),
 new ParallelCommandGroup(
-        new ElevatorCommand(m_elevatorSystem, 750),
+        new ElevatorCommand(m_elevatorSystem, 850),
         new IntakeCommandforAutonomus( m_arm, -140)
 ),
                 new WaitCommand(500),
@@ -47,7 +47,7 @@ new ParallelCommandGroup(
                 new IntakeCommandforAutonomus( m_arm, 0),
                 new ParallelCommandGroup(
                         new TrajectoryFollowerCommand(m_drive, redTrejectories.girar(m_drive.getDrive())),
-                        new IntakeCommandforAutonomus( m_arm, -690)
+                        new IntakeCommandforAutonomus( m_arm, -685)
                 ),
 
 new ParallelCommandGroup(
@@ -74,14 +74,14 @@ new ParallelCommandGroup(
                 new ParallelCommandGroup(
                        new TrajectoryFollowerCommand(m_drive, redTrejectories.rojoford(m_drive.getDrive())),
                         new ElevatorCommand(m_elevatorSystem, 0)
-       ),
-                new WaitCommand(250),
+       )
+                /*new WaitCommand(250),
               new ParallelCommandGroup(
                        new TrajectoryFollowerCommand(m_drive, redTrejectories.rojoizq12(m_drive.getDrive())),
                        new IntakeCommandforAutonomus(m_arm, 0)
                        ),
                 new TrajectoryFollowerCommand(m_drive, redTrejectories.girar2(m_drive.getDrive())),
-        new TrajectoryFollowerCommand(m_drive, redTrejectories.girarfinal(m_drive.getDrive()))
+        new TrajectoryFollowerCommand(m_drive, redTrejectories.girarfinal(m_drive.getDrive()))*/
 
         );
 
