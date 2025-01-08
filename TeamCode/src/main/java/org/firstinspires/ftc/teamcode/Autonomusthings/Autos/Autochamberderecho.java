@@ -22,12 +22,12 @@ public class Autochamberderecho extends SequentialCommandGroup {
                         new TrajectoryFollowerCommand(m_drive, chambersRedTrajectories.chamber1(m_drive.getDrive())),
                         new ElevatorCommand(m_elevatorSystem, 1575)
                 ),
-                new WaitCommand(600),
+                new WaitCommand(250),
                 new ParallelCommandGroup(
                         new ElevatorCommand(m_elevatorSystem, 750),
                         new IntakeCommandforAutonomus( m_arm, -100)
                 ),
-                new WaitCommand(600),
+                new WaitCommand(250),
                 new ParallelCommandGroup(
                         new ElevatorCommand(m_elevatorSystem, 0),
                         new TrajectoryFollowerCommand(m_drive, chambersRedTrajectories.chamber2(m_drive.getDrive()))
@@ -43,11 +43,11 @@ public class Autochamberderecho extends SequentialCommandGroup {
                         new TrajectoryFollowerCommand(m_drive, chambersRedTrajectories.chamber7(m_drive.getDrive())),
                         new ElevatorCommand(m_elevatorSystem, 1575)
                 ),
-                new WaitCommand(850),
+                new WaitCommand(500),
 
                         new ElevatorCommand(m_elevatorSystem, 750),
 
-                new WaitCommand(350),
+                new WaitCommand(250),
                 new ParallelCommandGroup(
                         new ElevatorCommand(m_elevatorSystem, 0),
                         new TrajectoryFollowerCommand(m_drive, chambersRedTrajectories.chamber8(m_drive.getDrive())),

@@ -186,7 +186,7 @@ public class FieldCentricTeleOp extends CommandOpMode {
         /* Escalator */
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER)
                 .whenPressed(()-> m_arm.setArmPosition(-675))
-                .whenPressed(()-> m_escalador.setPosition(4400));
+                .whenPressed(()-> m_escalador.setPosition(4500));
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
                 .whenPressed(()-> m_escalador.setPosition(0));
