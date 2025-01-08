@@ -55,7 +55,7 @@ public class RedTrejectories {
     public  Trajectory rojoford(SampleMecanumDrive drive){
         return drive.trajectoryBuilder(new Pose2d(-104, -61.25, Math.toRadians(50)))//90
                 .lineToLinearHeading(new Pose2d(-58, 18, Math.toRadians(50)))
-                // .forward(30)
+                // .forward(30)//
                 .build();
 
 
