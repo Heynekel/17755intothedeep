@@ -27,16 +27,23 @@ public class ElevatorSystem extends SubsystemBase {
         brazoder.setCurrentAlert(4000, CurrentUnit.MILLIAMPS);
 
 
-
+/*Direccion del motor*/
         brazoizq.setDirection(DcMotorEx.Direction.REVERSE);//FORDWARD
         brazoder.setDirection(DcMotorSimple.Direction.FORWARD);//REVERSE
 
+
+        /*Los tiks sean 0*/
         brazoizq.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         brazoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+
+        /*Para mantener los motores fijos*/
 
         brazoder.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         brazoizq.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
+
+
 
     public void resetTicks() {
         brazoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

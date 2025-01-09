@@ -1,15 +1,11 @@
-package org.firstinspires.ftc.teamcode.NewCommands;
+package org.firstinspires.ftc.teamcode.Commands;
 
 import com.arcrobotics.ftclib.command.CommandBase;
-import com.arcrobotics.ftclib.command.CommandScheduler;
-import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 
 import org.firstinspires.ftc.teamcode.Subsystem.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.IntakeSubsystem;
-
-import java.util.concurrent.Callable;
 
 public class LeaveCommandintake extends CommandBase {
 

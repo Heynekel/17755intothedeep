@@ -50,6 +50,8 @@ escalador.setPower(power);
         boolean isAtSetPoint = escalador.getCurrentPosition() - escalador.getTargetPosition() < escalador.getTargetPositionTolerance();
         return isAtSetPoint;
     }
+
+
 public void setPosition(int pos ){
         escalador.setVelocity(5000);
         escalador.setTargetPosition(pos);

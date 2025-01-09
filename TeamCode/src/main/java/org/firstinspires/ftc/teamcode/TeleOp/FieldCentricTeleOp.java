@@ -13,10 +13,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCommandforAutonomus;
 import org.firstinspires.ftc.teamcode.Commands.MecanumDriveCommand;
-import org.firstinspires.ftc.teamcode.NewCommands.ElevatorCommand;
-import org.firstinspires.ftc.teamcode.NewCommands.LeaveCommandintake;
-import org.firstinspires.ftc.teamcode.NewCommands.ServoLeaveCommand;
-import org.firstinspires.ftc.teamcode.NewCommands.ServoReturnCommand;
+import org.firstinspires.ftc.teamcode.Commands.ElevatorCommand;
+import org.firstinspires.ftc.teamcode.Commands.ServoLeaveCommand;
+import org.firstinspires.ftc.teamcode.Commands.ServoReturnCommand;
 import org.firstinspires.ftc.teamcode.Subsystem.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.Canasta;
 import org.firstinspires.ftc.teamcode.Subsystem.ElevatorSystem;
@@ -68,13 +67,6 @@ public class FieldCentricTeleOp extends CommandOpMode {
                         chassisDriver::getRightX
         ));
 
-       /* chassisDriver.getGamepadButton(
-                GamepadKeys.Button.RIGHT_STICK_BUTTON)
-                .whenPressed(
-                        new InstantCommand(
-
-                                ()->m_drive.toggleInverted()));
-                                */
 
 
   /* Intake*/
@@ -109,16 +101,12 @@ public class FieldCentricTeleOp extends CommandOpMode {
                         .whenPressed(()-> m_arm.setArmPosition(-440));
 
 
-        //m_intake.setDefaultCommand(new IntakeArmCommand(m_intake,chassisDriver,subsystemsDriver));
-
-
-
         /* Driver 2 */
         /* Elevator */
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.START)
                         .whenPressed(()-> m_elevator.resetTicks());
 
-                              //  .whenReleased(()-> m_arm.setArmPosition(-140))
+
 
             /* Basket positions*/
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.Y)
@@ -127,7 +115,6 @@ public class FieldCentricTeleOp extends CommandOpMode {
                         new SequentialCommandGroup(
                                 new IntakeCommandforAutonomus(m_arm, -140),
                                 new ParallelCommandGroup(
-                                  //new IntakeCommandforAutonomus(m_arm, -140),
                                         new ElevatorCommand(m_elevator,2500),
                                         new WaitCommand(200),
                                         new ServoLeaveCommand(m_canasta,m_elevator,1500, 2400)),
@@ -193,7 +180,6 @@ public class FieldCentricTeleOp extends CommandOpMode {
 
 
         /*Outake*/
-        //m_intake.setDefaultCommand(new LeaveCommandintake(m_intake, m_arm, subsystemsDriver));
 
         schedule(new RunCommand(() -> {
             m_drive.update();

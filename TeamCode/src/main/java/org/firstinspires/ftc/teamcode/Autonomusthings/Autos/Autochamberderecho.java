@@ -7,7 +7,7 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 import org.firstinspires.ftc.teamcode.Autonomusthings.Trejectories.ChambersRedTrajectories;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCommandforAutonomus;
 import org.firstinspires.ftc.teamcode.Commands.TrajectoryFollowerCommand;
-import org.firstinspires.ftc.teamcode.NewCommands.ElevatorCommand;
+import org.firstinspires.ftc.teamcode.Commands.ElevatorCommand;
 import org.firstinspires.ftc.teamcode.Subsystem.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.ElevatorSystem;
 import org.firstinspires.ftc.teamcode.Subsystem.MecanumDriveSubsystem;
