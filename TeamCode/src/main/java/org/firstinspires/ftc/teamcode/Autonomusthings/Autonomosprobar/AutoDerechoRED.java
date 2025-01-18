@@ -1,36 +1,41 @@
 package org.firstinspires.ftc.teamcode.Autonomusthings.Autonomosprobar;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
+
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.RunCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.Autonomusthings.Autos.AutosRed;
+import org.firstinspires.ftc.teamcode.Autonomusthings.Autos.AutoChamberRed;
 import org.firstinspires.ftc.teamcode.Subsystem.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.Canasta;
 import org.firstinspires.ftc.teamcode.Subsystem.ElevatorSystem;
 import org.firstinspires.ftc.teamcode.Subsystem.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.MecanumDriveSubsystem;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
-
 @Autonomous
-public class AutonomoIzquierdo extends CommandOpMode {
-IntakeSubsystem intake;
-MecanumDriveSubsystem mecanumDriveSubsystem;
-AutosRed autosRed;
-SampleMecanumDrive sampleMecanumDrive;
-ElevatorSystem elevatorSystem;
-Canasta canasta;
-ArmSubsystem m_arm;
+public class AutoDerechoRED extends CommandOpMode {
+
+    IntakeSubsystem intake;
+    MecanumDriveSubsystem mecanumDriveSubsystem;
+    SampleMecanumDrive sampleMecanumDrive;
+    ElevatorSystem elevatorSystem;
+    Canasta canasta;
+    ArmSubsystem m_arm;
+    AutoChamberRed autoChamberRed;
+
+
 
     @Override
     public void initialize() {
         sampleMecanumDrive = new SampleMecanumDrive(hardwareMap);/*siempre van al incio*/
         mecanumDriveSubsystem = new MecanumDriveSubsystem(sampleMecanumDrive, false, false);
+
         intake = new IntakeSubsystem(hardwareMap, telemetry);
         canasta = new Canasta(hardwareMap, telemetry);
-         m_arm = new ArmSubsystem(hardwareMap, telemetry);
+        m_arm = new ArmSubsystem(hardwareMap, telemetry);
         elevatorSystem = new ElevatorSystem(hardwareMap, telemetry);
-
         schedule(new RunCommand(() -> {
             mecanumDriveSubsystem.update();
             mecanumDriveSubsystem.updatePoseEstimate();
@@ -38,17 +43,9 @@ ArmSubsystem m_arm;
             telemetry.addData("Position", mecanumDriveSubsystem.getPoseEstimate());
             telemetry.update();
         }));
-        autosRed = new AutosRed(mecanumDriveSubsystem, intake, m_arm, elevatorSystem, canasta);/*Siempre al final*/
-        schedule(autosRed);
-
-
-
-
+        autoChamberRed = new AutoChamberRed(m_arm, mecanumDriveSubsystem, elevatorSystem);/*Siempre al final*/
+        schedule(autoChamberRed);
 
 
     }
-
-
-
-
-}
+    }

@@ -72,11 +72,10 @@ public class FieldCentricTeleOp extends CommandOpMode {
   /* Intake*/
         chassisDriver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER)
                 .whileHeld(()-> m_intake.setPower(-1))
-                .whileHeld(()-> m_arm.setArmPosition(-690))
+                .whileHeld(()-> m_arm.setArmPosition(-1475))
 
                 .whenReleased(()-> m_intake.setPower(0))
-                .whenReleased(()-> m_arm.setArmPosition(3));//Intake
-
+                .whenReleased(()-> m_arm.setArmPosition(5));
 
         chassisDriver.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)//Outake
                 .whileHeld(()-> m_intake.agarrar(1))
@@ -96,9 +95,18 @@ public class FieldCentricTeleOp extends CommandOpMode {
                 ))
                         .whenReleased(()-> m_intake.agarrar(0));
 
-
         chassisDriver.getGamepadButton(GamepadKeys.Button.B)
-                        .whenPressed(()-> m_arm.setArmPosition(-440));
+                        .whenPressed(()-> m_arm.setArmPosition(-850));
+
+
+        chassisDriver.getGamepadButton(GamepadKeys.Button.DPAD_DOWN)
+                        .whileHeld(()-> m_escalador.moreTicks(m_escalador.getPosition()-200, 1))
+                .whenReleased(()-> m_escalador.moreTicks(m_escalador.getPosition(),  0));
+
+        chassisDriver.getGamepadButton(GamepadKeys.Button.DPAD_UP)
+                .whileHeld(()-> m_escalador.moreTicks(m_escalador.getPosition()+200, 1))
+                .whenReleased(()-> m_escalador.moreTicks(m_escalador.getPosition(),  0));
+
 
 
         /* Driver 2 */
@@ -113,25 +121,25 @@ public class FieldCentricTeleOp extends CommandOpMode {
                 .whenPressed(
 
                         new SequentialCommandGroup(
-                                new IntakeCommandforAutonomus(m_arm, -140),
+                                new IntakeCommandforAutonomus(m_arm, -150),
                                 new ParallelCommandGroup(
                                         new ElevatorCommand(m_elevator,2500),
-                                        new WaitCommand(200),
-                                        new ServoLeaveCommand(m_canasta,m_elevator,1500, 2400)),
+                                        new WaitCommand(500),
+                                        new ServoLeaveCommand(m_canasta,m_elevator,1500, 2475)),
                                 new SequentialCommandGroup(
                                         new WaitCommand(400),
                                         new ServoReturnCommand(m_canasta),
                                         new WaitCommand(450),
                                         new ElevatorCommand(m_elevator,0),
-                                        new WaitCommand(1000),
-                                        new IntakeCommandforAutonomus(m_arm, 0)
+                                        new WaitCommand(1200),
+                                        new IntakeCommandforAutonomus(m_arm, 5)
                                 )
                         )
                 );
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.B)
                 .whenPressed(
                         new SequentialCommandGroup(
-                                new IntakeCommandforAutonomus(m_arm, -140),
+                                new IntakeCommandforAutonomus(m_arm, -150),
                                 new ParallelCommandGroup(
                                         new ElevatorCommand(m_elevator,1160),
                                         new WaitCommand(400),
@@ -143,7 +151,7 @@ public class FieldCentricTeleOp extends CommandOpMode {
                                         new WaitCommand(400),
                                         new ElevatorCommand(m_elevator,0),
                                         new WaitCommand(500),
-                                        new IntakeCommandforAutonomus(m_arm, 0)
+                                        new IntakeCommandforAutonomus(m_arm, 5)
 
                                 )
                         )
@@ -151,35 +159,41 @@ public class FieldCentricTeleOp extends CommandOpMode {
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.A)
                 .whenPressed(()-> m_elevator.setPosition(0))
                         .whenPressed(m_canasta::regresar)
-                .whenReleased(()-> m_arm.setArmPosition(0))
+                .whenReleased(()-> m_arm.setArmPosition(5))
         ;
 
 
                 /*Chamber positions */
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_UP)
-                .whileHeld(()-> m_arm.setArmPosition(-140))
+                .whileHeld(()-> m_arm.setArmPosition(-150))
                 .whileHeld(()-> m_elevator.setPosition(1575));
 
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT)
-                .whileHeld(()-> m_arm.setArmPosition(-140))
-                .whileHeld(()-> m_elevator.setPosition(500));
+                .whileHeld(()-> m_arm.setArmPosition(-150))
+                .whileHeld(()-> m_elevator.setPosition(-500));
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.DPAD_DOWN)
-                .whileHeld(()-> m_arm.setArmPosition(-140))
+                .whileHeld(()-> m_arm.setArmPosition(-150))
                 .whileHeld(()-> m_elevator.setPosition(950));
 
         /* Escalator */
-        subsystemsDriver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER)
-                .whenPressed(()-> m_arm.setArmPosition(-675))
-                .whenPressed(()-> m_escalador.setPosition(4500));
+        /*subsystemsDriver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER)
+                .whenPressed(()-> m_arm.setArmPosition(-1000))
+                .whenPressed(new SequentialCommandGroup(
+                        new WaitCommand(250),
+                        new InstantCommand(()-> m_escalador.setPosition(4175)))
+                );
 
         subsystemsDriver.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
-                .whenPressed(()-> m_escalador.setPosition(0));
+                .whenPressed(new SequentialCommandGroup(
+                        new InstantCommand(()-> m_escalador.setPosition(0)),
+                        new WaitCommand(2000)
+                ));*/
 
 
-        /*Outake*/
+
 
         schedule(new RunCommand(() -> {
             m_drive.update();

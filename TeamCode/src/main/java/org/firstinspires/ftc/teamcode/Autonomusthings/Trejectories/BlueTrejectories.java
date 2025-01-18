@@ -6,13 +6,13 @@ import com.acmerobotics.roadrunner.trajectory.Trajectory;
 
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
-public class RedTrejectories {
+public class BlueTrejectories {
     public  Trajectory reojoiz1(SampleMecanumDrive drive){
         Pose2d firstpose = new Pose2d(-8.59, -64.81, Math.toRadians(270));
         drive.setPoseEstimate(firstpose);
         return drive.trajectoryBuilder(firstpose)
                // .back(61)
-                 .lineToLinearHeading(new Pose2d(1.7, -13.25, Math.toRadians(270)))
+                 .lineToLinearHeading(new Pose2d(1.7, -10, Math.toRadians(270)))
                 .build();
 
 
@@ -22,8 +22,8 @@ public class RedTrejectories {
 
 
     public  Trajectory rojoizq3(SampleMecanumDrive drive){
-        return drive.trajectoryBuilder(new Pose2d(3, -20, Math.toRadians(270)))
-                 .lineToConstantHeading(new Vector2d(-45,-36))//48
+        return drive.trajectoryBuilder(new Pose2d(3, -30, Math.toRadians(270)))
+                 .lineToConstantHeading(new Vector2d(-70,-36))//48
                 .build();
 
 
@@ -32,37 +32,40 @@ public class RedTrejectories {
     }
 
     public  Trajectory girar(SampleMecanumDrive drive){
-        return   drive.trajectoryBuilder(new Pose2d(-45, -37, Math.toRadians(139)))//139
+        return   drive.trajectoryBuilder(new Pose2d(-70, -37.5, Math.toRadians(180)))//139
                 .forward(0.001)
                 .build();
     }
 
     public Trajectory rojoizq4 (SampleMecanumDrive drive) {
-        return     drive.trajectoryBuilder(new Pose2d(-45,-37, Math.toRadians(139)))//139
-                .forward(35)
+        return     drive.trajectoryBuilder(new Pose2d(-70,-37.5, Math.toRadians(180)))//139
+                .lineToLinearHeading(new Pose2d(-70, 6.5, Math.toRadians(180)))
+                //.forward(35)
                 .build();
 
     }//
 
     public  Trajectory rojoizq5(SampleMecanumDrive drive){
-        return drive.trajectoryBuilder(new Pose2d(-58, -33, Math.toRadians(139)))//139
-                .lineToLinearHeading(new Pose2d(-108, -63, Math.toRadians(50)))
+        return drive.trajectoryBuilder(new Pose2d(-70, 6.5, Math.toRadians(180)))//139
+                .forward(20)
+                // .lineToLinearHeading(new Pose2d(-108, -62.5, Math.toRadians(50)))
                 .build();
 
 
     }
 
     public  Trajectory rojoford(SampleMecanumDrive drive){
-        return drive.trajectoryBuilder(new Pose2d(-104, -61.25, Math.toRadians(50)))//90
-                .lineToLinearHeading(new Pose2d(-78, 10, Math.toRadians(90)))
+        return drive.trajectoryBuilder(new Pose2d(-104, -61.25, Math.toRadians(140)))//90
+                .lineToLinearHeading(new Pose2d(-110, -65, Math.toRadians(45)))
+                //.lineToLinearHeading(new Pose2d(-78, 15, Math.toRadians(90)))
                 // .forward(30)//
                 .build();
 
 
     }
     public Trajectory rojoizq12(SampleMecanumDrive drive){
-        return drive.trajectoryBuilder(new Pose2d(-94, -43, Math.toRadians(50)))
-                .splineTo(new Vector2d(-55, 18), Math.toRadians(50))
+        return drive.trajectoryBuilder(new Pose2d(-110, -67, Math.toRadians(90)))
+                .splineTo(new Vector2d(-50, -65), Math.toRadians(270))
                 .build();
 
     }
